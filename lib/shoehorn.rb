@@ -1,3 +1,7 @@
-module Shoehorn
-  # Your code goes here...
-end
+require 'shoehorn/connection'
+require 'shoehorn/bill'
+require 'shoehorn/business_card'
+require 'shoehorn/category'
+require 'shoehorn/image'
+require 'shoehorn/other_document'
+require 'shoehorn/receipt'

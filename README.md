@@ -39,8 +39,10 @@ GetUserStatisticsCall
 RegisterDiyUserCall  
 GetLoginCall  
 
-## Contributors
+## Footnotes
 
 Mike Gunderloy, MikeG1@larkfarm.com
+
+Thanks to https://github.com/bcurren/rshoeboxed for previous hard work on the shoeboxed API.
 
 Public repo: https://github.com/ffmike/shoehorn
