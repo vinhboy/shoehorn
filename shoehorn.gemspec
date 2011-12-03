@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Mike Gunderloy"]
   s.email       = ["MikeG1@larkfarm.com"]
-  s.homepage    = ""
+  s.homepage    = "https://github.com/ffmike/shoehorn"
   s.summary     = %q{Shoeboxed API implementation}
   s.description = %q{Ruby implementation of the API for Shoeboxed, http://developer.shoeboxed.com/overview}
 
