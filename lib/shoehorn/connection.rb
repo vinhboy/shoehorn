@@ -19,7 +19,13 @@ module Shoehorn
       @return_url = return_url if return_url
       @return_parameters = encode_parameters(return_parameters) if return_parameters
     end
-
+    
+    def authentication_url                                                                                         
+      raise ParameterError.new("Authentication URL requires application name")if application_name.nil?
+      raise ParameterError.new("Authentication URL requires return URL") if return_url.nil?
+      "#{API_ENDPOINT}?appname=#{@application_name}&appurl=#{CGI.escape(@return_url)}&apparams=#{@return_parameters}&SignIn=1"
+    end
+    
     def logger
       @@logger
     end

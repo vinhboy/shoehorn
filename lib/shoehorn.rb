@@ -1,3 +1,4 @@
+require 'shoehorn/errors'
 require 'shoehorn/connection'
 require 'shoehorn/bill'
 require 'shoehorn/business_card'

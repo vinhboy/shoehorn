@@ -17,12 +17,12 @@ class TestConnection < Test::Unit::TestCase
     should "set up a new logger by default" do
       assert_not_nil @connection.logger
     end
-   
+
     should "set up a new logger when using initialize with parameters" do
       connection = Shoehorn::Connection.new('GreatApp')
       assert_not_nil @connection.logger
     end
-    
+
     should "allow setting a logger" do
       new_logger = Logger.new(STDOUT)
       @connection.logger = new_logger
@@ -72,11 +72,41 @@ class TestConnection < Test::Unit::TestCase
         assert_equal 'param=value', connection.return_parameters
       end
 
-      should "allow setting after initializig" do
+      should "allow setting after initializing" do
         connection = Shoehorn::Connection.new
         connection.return_parameters = 'param=value'
         assert_equal 'param=value', connection.return_parameters
       end
+    end
+  end
+
+  context "authentication URL" do
+    context "required parameters" do
+      should "require application name" do
+        assert_raise Shoehorn::ParameterError do
+          connection = Shoehorn::Connection.new
+          authentication_url = connection.authentication_url
+        end
+      end
+
+      should "require return URL" do
+        assert_raises Shoehorn::ParameterError do
+          connection = Shoehorn::Connection.new("GreatApp")
+          authentication_url = connection.authentication_url
+        end
+      end
+
+      should "not require return params" do
+        assert_nothing_raised do
+          connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com')
+          authentication_url = connection.authentication_url
+        end
+      end
+    end
+
+    should "Generate a properly encoded authentication URL" do
+      connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com')
+      assert_equal "https://api.shoeboxed.com/v1/ws/api.htm?appname=GreatApp&appurl=http%3A%2F%2Fgreatapp.example.com&apparams=&SignIn=1", connection.authentication_url
     end
   end
 
