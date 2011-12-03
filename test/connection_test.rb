@@ -17,7 +17,12 @@ class TestConnection < Test::Unit::TestCase
     should "set up a new logger by default" do
       assert_not_nil @connection.logger
     end
-
+   
+    should "set up a new logger when using initialize with parameters" do
+      connection = Shoehorn::Connection.new('GreatApp')
+      assert_not_nil @connection.logger
+    end
+    
     should "allow setting a logger" do
       new_logger = Logger.new(STDOUT)
       @connection.logger = new_logger
@@ -31,6 +36,47 @@ class TestConnection < Test::Unit::TestCase
     should "allow setting the logging level" do
       @connection.log_level = Logger::INFO
       assert_equal Logger::INFO, @connection.log_level
+    end
+  end
+
+  context "authentication params" do
+    context "application name" do
+      should "allow passing when initializing" do
+        connection = Shoehorn::Connection.new('GreatApp')
+        assert_equal 'GreatApp', connection.application_name
+      end
+
+      should "allow setting after initializig" do
+        connection = Shoehorn::Connection.new
+        connection.application_name = 'GreatApp'
+        assert_equal 'GreatApp', connection.application_name
+      end
+    end
+
+    context "return URL" do
+      should "allow passing when initializing" do
+        connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com')
+        assert_equal 'http://greatapp.example.com', connection.return_url
+      end
+
+      should "allow setting after initializig" do
+        connection = Shoehorn::Connection.new
+        connection.return_url = 'http://greatapp.example.com'
+        assert_equal 'http://greatapp.example.com', connection.return_url
+      end
+    end
+
+    context "return URL params" do
+      should "allow passing when initializing" do
+        connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com', {:param => 'value'})
+        assert_equal 'param=value', connection.return_parameters
+      end
+
+      should "allow setting after initializig" do
+        connection = Shoehorn::Connection.new
+        connection.return_parameters = 'param=value'
+        assert_equal 'param=value', connection.return_parameters
+      end
     end
   end
 
