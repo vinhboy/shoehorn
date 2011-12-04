@@ -19,13 +19,53 @@ module Shoehorn
       @return_url = return_url if return_url
       @return_parameters = encode_parameters(return_parameters) if return_parameters
     end
-    
-    def authentication_url                                                                                         
+
+    def authentication_url
       raise ParameterError.new("Authentication URL requires application name")if application_name.nil?
       raise ParameterError.new("Authentication URL requires return URL") if return_url.nil?
       "#{API_ENDPOINT}?appname=#{@application_name}&appurl=#{CGI.escape(@return_url)}&apparams=#{@return_parameters}&SignIn=1"
     end
-    
+
+    def bills
+      unless @bills_initialized
+        @bills = Shoehorn::Bills.new
+        @bills_initialized = true
+      end
+      @bills
+    end
+
+    def business_cards
+      unless @business_cards_initialized
+        @business_cards = Shoehorn::BusinessCards.new
+        @business_cards_initialized = true
+      end
+      @business_cards
+    end
+
+    def categories
+      unless @categories_initialized
+        @categories = Shoehorn::Categories.new
+        @categories_initialized = true
+      end
+      @categories
+    end
+
+    def other_documents
+      unless @other_documents_initialized
+        @other_documents = Shoehorn::OtherDocuments.new
+        @other_documents_initialized = true
+      end
+      @other_documents
+    end
+
+    def receipts
+      unless @receipts_initialized
+        @receipts = Shoehorn::Receipts.new
+        @receipts_initialized = true
+      end
+      @receipts
+    end
+
     def logger
       @@logger
     end

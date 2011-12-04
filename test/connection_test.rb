@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class TestConnection < Test::Unit::TestCase
+class ConnectionTest < Test::Unit::TestCase
   include Shoehorn
 
   context "API" do
@@ -108,6 +108,98 @@ class TestConnection < Test::Unit::TestCase
       connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com')
       assert_equal "https://api.shoeboxed.com/v1/ws/api.htm?appname=GreatApp&appurl=http%3A%2F%2Fgreatapp.example.com&apparams=&SignIn=1", connection.authentication_url
     end
+  end
+
+  context "collections" do
+    setup do
+      @connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com')
+    end
+
+    should "initialize bills when first accessed" do
+      Shoehorn::Bills.any_instance.expects(:get_bills).once
+      bills = @connection.bills
+    end   
+    
+    should "not initialize bills on second access" do
+      Shoehorn::Bills.any_instance.expects(:get_bills).once
+      bills = @connection.bills
+      bills = @connection.bills
+    end
+    
+    should "initialize bills on refresh" do
+      bills = @connection.bills
+      Shoehorn::Bills.any_instance.expects(:get_bills).once
+      bills.refresh
+    end
+
+    should "initialize business cards when first accessed" do
+      Shoehorn::BusinessCards.any_instance.expects(:get_business_cards).once
+      business_cards = @connection.business_cards
+    end   
+    
+    should "not initialize business cards on second access" do
+      Shoehorn::BusinessCards.any_instance.expects(:get_business_cards).once
+      business_cards = @connection.business_cards
+      business_cards = @connection.business_cards
+    end
+    
+    should "initialize business cards on refresh" do
+      business_cards = @connection.business_cards
+      Shoehorn::BusinessCards.any_instance.expects(:get_business_cards).once
+      business_cards.refresh
+    end
+
+    should "initialize categories when first accessed" do
+      Shoehorn::Categories.any_instance.expects(:get_categories).once
+      categories = @connection.categories
+    end   
+    
+    should "not initialize categories on second access" do
+      Shoehorn::Categories.any_instance.expects(:get_categories).once
+      categories = @connection.categories
+      categories = @connection.categories
+    end
+    
+    should "initialize categories on refresh" do
+      categories = @connection.categories
+      Shoehorn::Categories.any_instance.expects(:get_categories).once
+      categories.refresh
+    end
+
+    should "initialize other documents when first accessed" do
+      Shoehorn::OtherDocuments.any_instance.expects(:get_other_documents).once
+      other_documents = @connection.other_documents
+    end   
+    
+    should "not initialize other documents on second access" do
+      Shoehorn::OtherDocuments.any_instance.expects(:get_other_documents).once
+      other_documents = @connection.other_documents
+      other_documents = @connection.other_documents
+    end
+    
+    should "initialize other documents on refresh" do
+      other_documents = @connection.other_documents
+      Shoehorn::OtherDocuments.any_instance.expects(:get_other_documents).once
+      other_documents.refresh
+    end
+
+    should "initialize receipts when first accessed" do
+      Shoehorn::Receipts.any_instance.expects(:get_receipts).once
+      receipts = @connection.receipts
+    end   
+    
+    should "not initialize receipts on second access" do
+      Shoehorn::Receipts.any_instance.expects(:get_receipts).once
+      receipts = @connection.receipts
+      receipts = @connection.receipts
+    end
+    
+    should "initialize receipts on refresh" do
+      receipts = @connection.receipts
+      Shoehorn::Receipts.any_instance.expects(:get_receipts).once
+      receipts.refresh
+    end
+
   end
 
 end
