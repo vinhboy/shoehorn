@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetBillCallResponse>
+    <Bills count="2">
+        <Bill id="123884" envelopeCode="" note="" createDate="02/04/2011" modifyDate="02/04/2011" name="Power Bill" documentCurrency="USD" accountCurrency="USD" conversionRate="1" documentTotal="125.89" convertedTotal="125.89" formattedDocumentTotal="$125.89" formattedConvertedTotal="$125.89">
+            <Images count="2">
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/bill/123884/194ae40d7dfd8b2a4b3089991d1939e3/1" index="1"/>
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/bill/123884/194ae40d7dfd8b2a4b3089991d1939e3/2" index="2"/>
+            </Images>
+        </Bill>
+        <Bill id="123889" envelopeCode="INWBM1S3" note="" createDate="03/25/2011" modifyDate="03/27/2011" name="Cell Phone" documentCurrency="USD" accountCurrency="USD" conversionRate="1" documentTotal="152.78" convertedTotal="152.78" formattedDocumentTotal="$152.78" formattedConvertedTotal="$152.78">
+            <Images count="6">
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/bill/123889/68c57dad0a85a87109357082864038c9/1" index="1"/>
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/bill/123889/68c57dad0a85a87109357082864038c9/2" index="2"/>
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/bill/123889/68c57dad0a85a87109357082864038c9/3" index="3"/>
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/bill/123889/68c57dad0a85a87109357082864038c9/4" index="4"/>
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/bill/123889/68c57dad0a85a87109357082864038c9/5" index="5"/>
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/bill/123889/68c57dad0a85a87109357082864038c9/6" index="6"/>
+            </Images>
+        </Bill>
+    </Bills>
+</GetBillCallResponse>
