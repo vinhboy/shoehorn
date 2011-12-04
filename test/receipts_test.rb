@@ -4,7 +4,7 @@ class ReceiptsTest < ShoehornTest
 
   context "initialization" do
     setup do
-      @connection = Shoehorn::Connection.new
+      @connection = live_connection
       @receipts = @connection.receipts
     end
 

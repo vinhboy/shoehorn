@@ -7,7 +7,7 @@ module Shoehorn
   class Connection
 
     API_SERVER = "api.shoeboxed.com"
-    API_VERSION = 1   
+    API_VERSION = 1
     API_PATH = "/v#{API_VERSION}/ws/api.htm"
     API_ENDPOINT = "https://#{API_SERVER}#{API_PATH}"
 
@@ -19,7 +19,7 @@ module Shoehorn
 
     def initialize(application_name = nil, application_token = nil, return_url = nil, return_parameters = nil)
       setup_logger
-      @application_name = application_name if application_name      
+      @application_name = application_name if application_name
       @application_token = application_token if application_token
       @return_url = return_url if return_url
       @return_parameters = encode_parameters(return_parameters) if return_parameters
@@ -70,7 +70,7 @@ module Shoehorn
       end
       @receipts
     end
- 
+
     def requester_credentials_block(xml)
       xml.RequesterCredentials do |xml|
         xml.ApiUserToken(@application_token)
@@ -100,14 +100,13 @@ module Shoehorn
 
       check_for_api_error(result_body)
     end
-    
+
     def check_for_api_error(body)
       document = REXML::Document.new(body)
       root = document.root
-      puts root.inspect
       if root && root.name == "Error"
         description = root.attributes["description"]
-        
+
         case root.attributes["code"]
         when "1"
           raise AuthenticationError.new(description)
@@ -121,7 +120,7 @@ module Shoehorn
           raise InternalError.new(description)
         end
       end
-      
+
       body
     end
     def logger
