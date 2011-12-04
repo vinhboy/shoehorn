@@ -4,11 +4,11 @@ require 'builder'
 module Shoehorn
   class Receipts < Array
 
-    attr_accessor :connection
+    attr_accessor :connection, :matched_count
 
     def initialize(connection)
       @connection = connection
-      receipts = get_receipts
+      receipts, @matched_count = get_receipts
       receipts.nil? ? super([]) : super(receipts)
     end
 
@@ -19,7 +19,7 @@ module Shoehorn
     def self.parse(xml)
       receipts = Array.new
       document = REXML::Document.new(xml)
-      @@matched_count = document.elements["GetReceiptCallResponse"].elements["Receipts"].attributes["count"].to_i rescue 1
+      matched_count = document.elements["GetReceiptCallResponse"].elements["Receipts"].attributes["count"].to_i rescue 1
       document.elements.collect("//Receipt") do |receipt_element|
         begin
           receipt = Receipt.new
@@ -51,7 +51,7 @@ module Shoehorn
         end
         receipts << receipt
       end
-      receipts
+      return receipts, matched_count
     end
 
 private

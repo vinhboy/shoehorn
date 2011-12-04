@@ -1,0 +1,27 @@
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<GetReceiptCallResponse>
+    <Receipts count="2">
+        <Receipt store="Great Plains Trust Company" id="23984923842" total="$3,378.30" documentCurrency="USD" accountCurrency="USD" conversionRate="1" documentTotal="3378.30" convertedTotal="3378.30" formattedDocumentTotal="$3,378.30" formattedConvertedTotal="$3,378.30" documentTax="" convertedTax="" formattedDocumentTax="" formattedConvertedTax="" date="7/12/2008" modifiedDate="7/12/2008" createdDate="7/10/2008" selldate="5/12/2008" imgurl="http://www.shoeboxed.com/api/document/jpg/receipt/724959232/dfb2fb21498668f95f1c927991818842/1">
+            <Images>
+                <Image imgurl="http://www.shoeboxed.com/api/document/jpg/receipt/724959232/dfb2fb21498668f95f1c927991818842/1" index="1"/>
+                <Image imgurl="http://www.shoeboxed.com/api/document/jpg/receipt/724959232/dfb2fb21498668f95f1c927991818842/2" index="2"/>
+                <Image imgurl="http://www.shoeboxed.com/api/document/jpg/receipt/724959232/dfb2fb21498668f95f1c927991818842/3" index="3"/>
+            </Images>
+            <Categories>
+                <Category name="Meals / Entertainment" id="23423342"/>
+                <Category name="General Retail" id="9121023"/>
+                <Category name="Fuel" id="18222392"/>
+            </Categories>
+        </Receipt>
+        <Receipt store="RadioShack" id="39239293" total="$3.51" documentCurrency="USD" accountCurrency="USD" conversionRate="1" documentTotal="3.51" convertedTotal="3.51" formattedDocumentTotal="$3.51" formattedConvertedTotal="$3.51" documentTax="" convertedTax="" formattedDocumentTax="" formattedConvertedTax="" date="7/12/2008" modifiedDate="7/12/2008" createdDate="7/10/2008" selldate="5/12/2008" imgurl="http://www.shoeboxed.com/api/document/jpg/receipt/39239293/1b106d61cbfa5078f53050e2f3bc315f/1">
+            <Images>
+                <Image imgurl="http://www.shoeboxed.com/api/document/jpg/receipt/39239293/1b106d61cbfa5078f53050e2f3bc315f/1" index="1"/>
+                <Image imgurl="http://www.shoeboxed.com/api/document/jpg/receipt/39239293/1b106d61cbfa5078f53050e2f3bc315f/2" index="2"/>
+                <Image imgurl="http://www.shoeboxed.com/api/document/jpg/receipt/39239293/1b106d61cbfa5078f53050e2f3bc315f/3" index="3"/>
+            </Images>
+            <Categories>
+                <Category name="Electronics" id="892732"/>
+            </Categories>
+        </Receipt>
+    </Receipts>
+</GetReceiptCallResponse>    
