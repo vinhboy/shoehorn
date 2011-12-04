@@ -1,8 +1,11 @@
 module Shoehorn
   class OtherDocuments
     include Enumerable
+    
+    attr_accessor :connection
 
-    def initialize
+    def initialize(connection)
+      @connection = connection
       @other_documents = get_other_documents
     end
 

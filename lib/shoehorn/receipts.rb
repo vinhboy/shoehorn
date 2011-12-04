@@ -1,8 +1,11 @@
 module Shoehorn
   class Receipts
     include Enumerable
+    
+    attr_accessor :connection
 
-    def initialize
+    def initialize(connection)
+      @connection = connection
       @receipts = get_receipts
     end
 

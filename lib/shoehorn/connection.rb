@@ -28,7 +28,7 @@ module Shoehorn
 
     def bills
       unless @bills_initialized
-        @bills = Shoehorn::Bills.new
+        @bills = Shoehorn::Bills.new(self)
         @bills_initialized = true
       end
       @bills
@@ -36,7 +36,7 @@ module Shoehorn
 
     def business_cards
       unless @business_cards_initialized
-        @business_cards = Shoehorn::BusinessCards.new
+        @business_cards = Shoehorn::BusinessCards.new(self)
         @business_cards_initialized = true
       end
       @business_cards
@@ -44,7 +44,7 @@ module Shoehorn
 
     def categories
       unless @categories_initialized
-        @categories = Shoehorn::Categories.new
+        @categories = Shoehorn::Categories.new(self)
         @categories_initialized = true
       end
       @categories
@@ -52,7 +52,7 @@ module Shoehorn
 
     def other_documents
       unless @other_documents_initialized
-        @other_documents = Shoehorn::OtherDocuments.new
+        @other_documents = Shoehorn::OtherDocuments.new(self)
         @other_documents_initialized = true
       end
       @other_documents
@@ -60,7 +60,7 @@ module Shoehorn
 
     def receipts
       unless @receipts_initialized
-        @receipts = Shoehorn::Receipts.new
+        @receipts = Shoehorn::Receipts.new(self)
         @receipts_initialized = true
       end
       @receipts

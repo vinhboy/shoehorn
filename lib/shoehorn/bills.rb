@@ -1,8 +1,11 @@
 module Shoehorn
   class Bills
     include Enumerable
+    
+    attr_accessor :connection
 
-    def initialize
+    def initialize(connection)
+      @connection = connection
       @bills = get_bills
     end
 

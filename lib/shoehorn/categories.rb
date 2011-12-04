@@ -1,8 +1,11 @@
 module Shoehorn
   class Categories
-    include Enumerable
+    include Enumerable        
+    
+    attr_accessor :connection
 
-    def initialize
+    def initialize(connection)
+      @connection = connection
       @categories = get_categories
     end
 

@@ -1,8 +1,11 @@
 module Shoehorn
   class BusinessCards
     include Enumerable
+    
+    attr_accessor :connection
 
-    def initialize
+    def initialize(connection)
+      @connection = connection
       @business_cards = get_business_cards
     end
 
