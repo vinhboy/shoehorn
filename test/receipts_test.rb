@@ -48,5 +48,24 @@ class ReceiptsTest < ShoehornTest
     FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_receipt_call_response_1.xml'))
     receipts = connection.receipts   
     assert_equal 2, receipts.matched_count
+  end  
+  
+  should "retrieve an array of categories for each receipt" do
+    connection = Shoehorn::Connection.new
+    FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_receipt_call_response_1.xml'))
+    receipts = connection.receipts   
+    assert_equal 3, receipts[0].categories.size
+    assert_equal "23423342", receipts[0].categories[0].id
+    assert_equal "Meals / Entertainment", receipts[0].categories[0].name
   end
+  
+  should "retrieve an array of images for each receipt" do
+    connection = Shoehorn::Connection.new
+    FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_receipt_call_response_1.xml'))
+    receipts = connection.receipts   
+    assert_equal 3, receipts[0].images.size
+    assert_equal "1", receipts[0].images[0].index
+    assert_equal "http://www.shoeboxed.com/api/document/jpg/receipt/724959232/dfb2fb21498668f95f1c927991818842/1", receipts[0].images[0].imgurl
+  end
+  
 end
