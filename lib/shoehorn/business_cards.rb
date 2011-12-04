@@ -6,7 +6,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       business_cards = get_business_cards
-      business_cards.nil? ? super([]) : super(business_cards)
+      super(business_cards || [])
     end
 
     def refresh

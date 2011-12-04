@@ -9,7 +9,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       receipts, @matched_count = get_receipts
-      receipts.nil? ? super([]) : super(receipts)
+      super(receipts || [])
     end
 
     def refresh

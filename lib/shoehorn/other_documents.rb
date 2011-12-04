@@ -6,7 +6,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       other_documents = get_other_documents
-      other_documents.nil? ? super([]) : super(other_documents)
+      super(other_documents || [])
     end
 
     def refresh

@@ -6,7 +6,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       bills, @matched_count = get_bills
-      bills.nil? ? super([]) : super(bills)
+      super(bills || [])
     end
 
     def refresh

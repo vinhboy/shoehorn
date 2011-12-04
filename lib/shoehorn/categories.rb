@@ -9,7 +9,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       categories = get_categories
-      categories.nil? ? super([]) : super(categories)
+      super(categories || [])
     end
 
     def refresh
