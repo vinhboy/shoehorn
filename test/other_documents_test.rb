@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class OtherDocumentsTest < Test::Unit::TestCase
-  include Shoehorn
+class OtherDocumentsTest < ShoehornTest
 
   context "initialization" do
     setup do

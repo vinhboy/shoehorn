@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
 
-class ConnectionTest < Test::Unit::TestCase
-  include Shoehorn
+class ConnectionTest <ShoehornTest
 
   context "API" do
     should "know the right endpoint" do
