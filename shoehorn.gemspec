@@ -16,11 +16,12 @@ Gem::Specification.new do |s|
  
   s.add_dependency 'builder'
   
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'test-unit'
-  s.add_development_dependency 'shoulda'
+  s.add_development_dependency 'ci_reporter' 
+  s.add_development_dependency 'fakeweb'
   s.add_development_dependency 'mocha'  
-  s.add_development_dependency 'ci_reporter'
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'shoulda'
+  s.add_development_dependency 'test-unit'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

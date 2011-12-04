@@ -4,6 +4,7 @@ require 'test/unit'
 require 'shoulda'
 require 'mocha'
 require 'yaml'
+require 'fakeweb'
 
 class ShoehornTest < Test::Unit::TestCase
   include Shoehorn
@@ -18,6 +19,14 @@ class ShoehornTest < Test::Unit::TestCase
     connection = Shoehorn::Connection.new(application_name, application_token)
     connection.user_token = user_token
     connection
+  end
+ 
+  def files_path
+    File.dirname(__FILE__) + '/fixtures'
+  end
+
+  def file_contents(filename)
+    File.read(File.join(files_path, filename))
   end
 
 end

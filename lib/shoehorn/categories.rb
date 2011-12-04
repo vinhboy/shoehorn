@@ -2,29 +2,21 @@ require 'rexml/document'
 require 'builder'
 
 module Shoehorn
-  class Categories
-    include Enumerable
+  class Categories < Array
 
     attr_accessor :connection
 
     def initialize(connection)
       @connection = connection
-      @categories = get_categories
+      categories = get_categories
+      categories.nil? ? super([]) : super(get_categories)
     end
 
     def refresh
-      @categories = get_categories
+      initialize(@connection)
     end
 
-    def each
-      @categories.each
-    end
-
-    def [](i)
-      @categories[i]
-    end
-
-    def self.parse(xml) 
+    def self.parse(xml)
       categories = Array.new
       document = REXML::Document.new(xml)
       document.elements.collect("//Category") do |category_element|
@@ -43,7 +35,7 @@ private
       request = build_category_request
       response = connection.post_xml(request)
 
-      @categories = Categories.parse(response)
+      Categories.parse(response)
     end
 
     def build_category_request

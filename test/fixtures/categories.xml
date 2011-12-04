@@ -1,0 +1,9 @@
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<GetCategoryCallResponse>
+    <Categories>
+        <Category id="239763456" name="Auto / Fuel"/>
+        <Category id="239763457" name="Bank / ATM"/>
+        <Category id="239763458" name="Computer / Internet"/>
+        <Category id="239763459" name="General Retail"/>
+    </Categories>
+</GetCategoryCallResponse>
