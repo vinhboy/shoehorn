@@ -1,24 +1,16 @@
 module Shoehorn
-  class OtherDocuments
-    include Enumerable
+  class OtherDocuments < Array
     
     attr_accessor :connection
 
     def initialize(connection)
       @connection = connection
-      @other_documents = get_other_documents
+      other_documents = get_other_documents
+      other_documents.nil? ? super([]) : super(other_documents)
     end
 
     def refresh
-      @other_documents = get_other_documents
-    end
-
-    def each
-      @other_documents.each
-    end
-
-    def [](i)
-      @other_documents[i]
+      initialize(@connection)
     end
 
 private

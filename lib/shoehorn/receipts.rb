@@ -2,26 +2,18 @@ require 'rexml/document'
 require 'builder'
 
 module Shoehorn
-  class Receipts
-    include Enumerable
+  class Receipts < Array
 
     attr_accessor :connection
 
     def initialize(connection)
       @connection = connection
-      @receipts = get_receipts
+      receipts = get_receipts
+      receipts.nil? ? super([]) : super(receipts)
     end
 
     def refresh
-      @receipts = get_receipts
-    end
-
-    def each
-      @receipts.each
-    end
-
-    def [](i)
-      @receipts[i]
+      initialize(@connection)
     end
 
     def self.parse(xml)
@@ -29,7 +21,7 @@ module Shoehorn
       document = REXML::Document.new(xml)
       @@matched_count = document.elements["GetReceiptCallResponse"].elements["Receipts"].attributes["count"].to_i rescue 1
       document.elements.collect("//Receipt") do |receipt_element|
-   #     begin
+        begin
           receipt = Receipt.new
           receipt.id = receipt_element.attributes["id"]
           receipt.store = receipt_element.attributes["store"]
@@ -54,9 +46,9 @@ module Shoehorn
 
           image_element = receipt_element.elements["Images"]
           receipt.images = image_element ? Images.parse(image_element.to_s) : []
-     #   rescue => e
-     #     raise Shoehorn::ParseError.new(e, receipt_element.to_s, "Error parsing receipt.")
-     #   end
+        rescue => e
+          raise Shoehorn::ParseError.new(e, receipt_element.to_s, "Error parsing receipt.")
+        end
         receipts << receipt
       end
       receipts
@@ -67,7 +59,7 @@ private
       request = build_receipt_request
       response = connection.post_xml(request)
 
-      @receipts = Receipts.parse(response)
+      Receipts.parse(response)
     end
 
     def build_receipt_request(options={})

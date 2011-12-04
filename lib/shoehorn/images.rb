@@ -2,27 +2,7 @@ require 'rexml/document'
 require 'builder'
 
 module Shoehorn
-  class Images
-    include Enumerable
-
-    # attr_accessor :connection
-    # 
-    # def initialize(connection)
-    #   @connection = connection
-    #   @categories = get_categories
-    # end
-    # 
-    # def refresh
-    #   @categories = get_categories
-    # end
-
-    def each
-      @images.each
-    end
-
-    def [](i)
-      @images[i]
-    end
+  class Images < Array
 
     def self.parse(xml) 
       images = Array.new

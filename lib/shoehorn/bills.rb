@@ -1,24 +1,16 @@
 module Shoehorn
-  class Bills
-    include Enumerable
+  class Bills < Array
     
     attr_accessor :connection
 
     def initialize(connection)
       @connection = connection
-      @bills = get_bills
+      bills = get_bills 
+      bills.nil? ? super([]) : super(bills)
     end
 
     def refresh
-      @bills = get_bills
-    end
-
-    def each
-      @bills.each
-    end
-
-    def [](i)
-      @bills[i]
+      initialize(@connection)
     end
 
 private
