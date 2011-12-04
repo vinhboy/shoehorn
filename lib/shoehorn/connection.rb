@@ -87,7 +87,8 @@ module Shoehorn
       request.set_form_data({'xml'=>body})
 
       result = connection.start  { |http| http.request(request) }
-
+      
+      # TODO: Is this still true in current API?
       # Convert to UTF-8, shoeboxed encodes with ISO-8859-1
       result_body = Iconv.conv('UTF-8', 'ISO-8859-1', result.body)
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetBillInfoCallResponse>
+    <Bill id="123884" envelopeCode="" note="" createDate="02/04/2011" modifyDate="02/04/2011" name="Power Bill" documentCurrency="USD" accountCurrency="USD" conversionRate="1" documentTotal="125.89" convertedTotal="125.89" formattedDocumentTotal="$125.89" formattedConvertedTotal="$125.89">
+        <Images count="2">
+            <Image imgurl="https://app.shoeboxed.com/api/document/jpg/bill/123884/194ae40d7dfd8b2a4b3089991d1939e3/1" index="1"/>
+            <Image imgurl="https://app.shoeboxed.com/api/document/jpg/bill/123884/194ae40d7dfd8b2a4b3089991d1939e3/2" index="2"/>
+        </Images>
+    </Bill>
+</GetBillInfoCallResponse>

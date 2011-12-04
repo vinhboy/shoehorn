@@ -16,7 +16,9 @@ module Shoehorn
     def self.parse(xml)
       bills = Array.new
       document = REXML::Document.new(xml)
-      matched_count = document.elements["GetBillCallResponse"].elements["Bills"].attributes["count"].to_i rescue 1
+      if document.elements["GetBillCallResponse"]
+        matched_count = document.elements["GetBillCallResponse"].elements["Bills"].attributes["count"].to_i rescue 1
+      end
       document.elements.collect("//Bill") do |bill_element|
         begin
           bill = Bill.new
@@ -44,33 +46,53 @@ module Shoehorn
       return bills, matched_count
     end
 
+    def find_by_id(id)
+      request = build_single_bill_request(id)
+      response = connection.post_xml(request)
+
+      bills, matched_count = Bills.parse(response)
+      bills.empty? ? nil : bills[0]
+    end
+
 private
-  def get_bills
-    request = build_bill_request
-    response = connection.post_xml(request)
+    def get_bills
+      request = build_bill_request
+      response = connection.post_xml(request)
 
-    Bills.parse(response)
-  end
+      Bills.parse(response)
+    end
 
-  def build_bill_request(options={})
-    results = options[:per_page] || 50
-    page_no = options[:page] || 1
-    modified_since = options[:modified_since]
+    def build_bill_request(options={})
+      results = options[:per_page] || 50
+      page_no = options[:page] || 1
+      modified_since = options[:modified_since]
 
-    xml = Builder::XmlMarkup.new
-    xml.instruct!
-    xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
-      connection.requester_credentials_block(xml)
-      xml.GetBillCall do |xml|
-        xml.BillFilter do |xml|
-          xml.Results(results)
-          xml.PageNo(page_no)
-          xml.ModifiedSince(modified_since) if modified_since
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.GetBillCall do |xml|
+          xml.BillFilter do |xml|
+            xml.Results(results)
+            xml.PageNo(page_no)
+            xml.ModifiedSince(modified_since) if modified_since
+          end
         end
       end
     end
 
-  end
+    def build_single_bill_request(id)
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.GetBillInfoCall do |xml|
+          xml.BillFilter do |xml|
+            xml.BillId(id)
+          end
+        end
+      end
+    end
 
   end
 end
