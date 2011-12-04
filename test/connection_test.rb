@@ -124,7 +124,7 @@ class ConnectionTest <ShoehornTest
 
   context "collections" do
     setup do
-      @connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com')
+      @connection = live_connection
     end
 
     should "initialize bills when first accessed" do

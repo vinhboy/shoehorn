@@ -4,7 +4,7 @@ class CategoriesTest < ShoehornTest
 
   context "initialization" do
     setup do
-      @connection = Shoehorn::Connection.new
+      @connection = live_connection
       @categories = @connection.categories
     end
 

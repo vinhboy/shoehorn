@@ -13,7 +13,9 @@ Gem::Specification.new do |s|
   s.description = %q{Ruby implementation of the API for Shoeboxed, http://developer.shoeboxed.com/overview}
 
   s.rubyforge_project = "shoehorn"
-
+ 
+  s.add_dependency 'builder'
+  
   s.add_development_dependency 'rake'
   s.add_development_dependency 'test-unit'
   s.add_development_dependency 'shoulda'

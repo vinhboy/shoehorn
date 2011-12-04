@@ -1,4 +1,5 @@
 pkg/*
 *.gem
-.bundle  
+.bundle
 .rvmrc
+test/shoehorn_credentials.yml

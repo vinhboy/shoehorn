@@ -1,11 +1,15 @@
 require 'cgi'
+require 'iconv'
 require 'logger'
+require "net/https"
 
 module Shoehorn
   class Connection
 
-    API_VERSION = 1
-    API_ENDPOINT = "https://api.shoeboxed.com/v#{API_VERSION}/ws/api.htm"
+    API_SERVER = "api.shoeboxed.com"
+    API_VERSION = 1   
+    API_PATH = "/v#{API_VERSION}/ws/api.htm"
+    API_ENDPOINT = "https://#{API_SERVER}#{API_PATH}"
 
     attr_accessor :application_name, :return_url, :return_parameters, :application_token, :user_token
 
@@ -66,7 +70,60 @@ module Shoehorn
       end
       @receipts
     end
+ 
+    def requester_credentials_block(xml)
+      xml.RequesterCredentials do |xml|
+        xml.ApiUserToken(@application_token)
+        xml.SbxUserToken(@user_token)
+      end
+    end
 
+    def post_xml(body)
+      connection = Net::HTTP.new(API_SERVER, 443)
+      connection.use_ssl = true
+      connection.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+      request = Net::HTTP::Post.new(API_PATH)
+      request.set_form_data({'xml'=>body})
+
+      result = connection.start  { |http| http.request(request) }
+
+      # Convert to UTF-8, shoeboxed encodes with ISO-8859-1
+      result_body = Iconv.conv('UTF-8', 'ISO-8859-1', result.body)
+
+      if logger.debug?
+        logger.debug "Request:"
+        logger.debug body
+        logger.debug "Response:"
+        logger.debug result_body
+      end
+
+      check_for_api_error(result_body)
+    end
+    
+    def check_for_api_error(body)
+      document = REXML::Document.new(body)
+      root = document.root
+      puts root.inspect
+      if root && root.name == "Error"
+        description = root.attributes["description"]
+        
+        case root.attributes["code"]
+        when "1"
+          raise AuthenticationError.new(description)
+        when "2"
+          raise UnknownAPICallError.new(description)
+        when "3"
+          raise RestrictedIPError.new(description)
+        when "4"
+          raise XMLValidationError.new(description)
+        when "5"
+          raise InternalError.new(description)
+        end
+      end
+      
+      body
+    end
     def logger
       @@logger
     end

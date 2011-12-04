@@ -39,6 +39,10 @@ GetUserStatisticsCall
 RegisterDiyUserCall  
 GetLoginCall  
 
+## Testing Shoehorn
+
+Some of the tests depend on a live connection to Shoeboxed. To set this up, you must make a copy of test/shoehorn\_credentials.sample.yml to test/shoehorn\_credentials.yml and fill in the required information. 
+
 ## Footnotes
 
 Mike Gunderloy, MikeG1@larkfarm.com
