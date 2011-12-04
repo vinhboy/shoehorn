@@ -7,15 +7,16 @@ module Shoehorn
     API_VERSION = 1
     API_ENDPOINT = "https://api.shoeboxed.com/v#{API_VERSION}/ws/api.htm"
 
-    attr_accessor :application_name, :return_url, :return_parameters
+    attr_accessor :application_name, :return_url, :return_parameters, :application_token, :user_token
 
     def initialize()
       setup_logger
     end
 
-    def initialize(application_name = nil, return_url = nil, return_parameters = nil)
+    def initialize(application_name = nil, application_token = nil, return_url = nil, return_parameters = nil)
       setup_logger
-      @application_name = application_name if application_name
+      @application_name = application_name if application_name      
+      @application_token = application_token if application_token
       @return_url = return_url if return_url
       @return_parameters = encode_parameters(return_parameters) if return_parameters
     end

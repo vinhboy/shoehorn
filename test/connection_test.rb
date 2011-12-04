@@ -45,20 +45,33 @@ class ConnectionTest <ShoehornTest
         assert_equal 'GreatApp', connection.application_name
       end
 
-      should "allow setting after initializig" do
+      should "allow setting after initializing" do
         connection = Shoehorn::Connection.new
         connection.application_name = 'GreatApp'
         assert_equal 'GreatApp', connection.application_name
       end
     end
 
+    context "application token" do
+      should "allow passing when initializing" do
+        connection = Shoehorn::Connection.new('GreatApp', 'ABCDEF')
+        assert_equal 'ABCDEF', connection.application_token
+      end
+
+      should "allow setting after initializing" do
+        connection = Shoehorn::Connection.new
+        connection.application_token = 'ABCDEF'
+        assert_equal 'ABCDEF', connection.application_token
+      end
+    end
+
     context "return URL" do
       should "allow passing when initializing" do
-        connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com')
+        connection = Shoehorn::Connection.new('GreatApp', 'ABCDEF', 'http://greatapp.example.com')
         assert_equal 'http://greatapp.example.com', connection.return_url
       end
 
-      should "allow setting after initializig" do
+      should "allow setting after initializing" do
         connection = Shoehorn::Connection.new
         connection.return_url = 'http://greatapp.example.com'
         assert_equal 'http://greatapp.example.com', connection.return_url
@@ -67,7 +80,7 @@ class ConnectionTest <ShoehornTest
 
     context "return URL params" do
       should "allow passing when initializing" do
-        connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com', {:param => 'value'})
+        connection = Shoehorn::Connection.new('GreatApp', 'ABCDEF', 'http://greatapp.example.com', {:param => 'value'})
         assert_equal 'param=value', connection.return_parameters
       end
 
@@ -97,14 +110,14 @@ class ConnectionTest <ShoehornTest
 
       should "not require return params" do
         assert_nothing_raised do
-          connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com')
+          connection = Shoehorn::Connection.new('GreatApp', 'ABCDEF', 'http://greatapp.example.com')
           authentication_url = connection.authentication_url
         end
       end
     end
 
     should "Generate a properly encoded authentication URL" do
-      connection = Shoehorn::Connection.new('GreatApp', 'http://greatapp.example.com')
+      connection = Shoehorn::Connection.new('GreatApp', 'ABCDEF', 'http://greatapp.example.com')
       assert_equal "https://api.shoeboxed.com/v1/ws/api.htm?appname=GreatApp&appurl=http%3A%2F%2Fgreatapp.example.com&apparams=&SignIn=1", connection.authentication_url
     end
   end
