@@ -3,7 +3,7 @@ require 'builder'
 
 module Shoehorn
   class BusinessCards  < Array
-    
+
     attr_accessor :connection, :matched_count
 
     def initialize(connection)
@@ -57,6 +57,21 @@ module Shoehorn
 
       business_cards, matched_count = BusinessCards.parse(response)
       business_cards.empty? ? nil : business_cards[0]
+    end
+
+    # Returns the estimated number of cards and number of pages for exporting Business Cards as PDF
+    def estimate_pdf_business_card_report
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.EstimatePdfBusinessCardReport
+      end
+      response = connection.post_xml(xml)
+      document = REXML::Document.new(response)
+      number_of_cards = document.elements["EstimatePdfBusinessCardReportCallResponse"].elements["NumberOfBusinessCards"].text.to_i rescue 0
+      number_of_pages = document.elements["EstimatePdfBusinessCardReportCallResponse"].elements["NumberOfPages"].text.to_i rescue 0
+      return number_of_cards, number_of_pages
     end
 
 private

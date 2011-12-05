@@ -84,5 +84,14 @@ class BusinessCardsTest < ShoehornTest
     should_eventually "return nil if no such business card"
     
   end
-
+ 
+  context "PDFs" do
+    should "Get the estimated size of the PDF" do 
+      connection = mock_response('estimate_pdf_business_card_report_call_response.xml') 
+      cards, pages = connection.business_cards.estimate_pdf_business_card_report
+      assert_equal 140, cards
+      assert_equal 70, pages
+    end
+  end
+  
 end

@@ -28,6 +28,11 @@ class ShoehornTest < Test::Unit::TestCase
   def file_contents(filename)
     File.read(File.join(files_path, filename))
   end
-
+  
+  def mock_response(filename)
+    connection = Shoehorn::Connection.new
+    FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents(filename))
+    connection
+  end
 end
 
