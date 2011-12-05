@@ -101,7 +101,20 @@ class BusinessCardsTest < ShoehornTest
       connection = mock_response('get_business_cards_exports_call_response.xml')
       h = {"DEFAULT" => true, "EVERNOTE" => true, "GOOGLE_MAIL" => true, "YAHOO_MAIL" => false}
       assert_equal h, connection.business_cards.get_business_card_exports
+    end  
+    
+    should "Know when business card auto-share mode is on" do
+      connection = mock_response('get_business_card_notify_preference_call_response_on.xml')
+      assert connection.business_cards.notify_preference
     end
+
+    should "Know when business card auto-share mode is off" do
+      connection = mock_response('get_business_card_notify_preference_call_response_off.xml')
+      assert !connection.business_cards.notify_preference
+    end       
+                                                    
+    # Worth testing this live?
+    should_eventually "Allow setting auto-share mode"
   end
 
 end

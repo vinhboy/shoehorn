@@ -109,6 +109,40 @@ module Shoehorn
       exports
     end
 
+    # Does the user have business card auto-share mode turned on?
+    def notify_preference
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.GetBusinessCardNotifyPreferenceCall
+      end
+      response = connection.post_xml(xml)
+      exports = Hash.new
+      document = REXML::Document.new(response)
+      document.elements["GetBusinessCardNotifyPreferenceCallResponse"].elements["BusinessCardNotifyPreference"].text == "1"
+    end
+
+    # Turn auto-share mode on or off
+    def notify_preference=(value)                          
+      if value
+        translated_value = "1"
+      else
+        translated_value = "0"
+      end
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.SetBusinessCardNotifyPreferenceCall do |xml|
+          xml.BusinessCardNotifyPreference(translated_value)
+        end
+      end
+      response = connection.post_xml(xml)
+      # TODO: Retrieve the new value to make sure it worked?
+      value
+    end
+
 private
     def get_business_cards
       request = build_business_card_request
