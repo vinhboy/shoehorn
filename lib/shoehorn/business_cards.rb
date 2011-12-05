@@ -51,9 +51,13 @@ module Shoehorn
       return business_cards, matched_count
     end
 
-    attr_accessor :id, :first_name, :last_name, :create_date, :address, :address2, :city, :state, :zip,
-     :country, :email, :website, :company, :position, :work_phone, :cell_phone, :fax, :front_img_url,
-     :back_img_url, :note
+    def find_by_id(id)
+      request = build_single_business_card_request(id)
+      response = connection.post_xml(request)
+
+      business_cards, matched_count = BusinessCards.parse(response)
+      business_cards.empty? ? nil : business_cards[0]
+    end
 
 private
     def get_business_cards
@@ -80,7 +84,20 @@ private
           end
         end
       end
+    end
 
+
+    def build_single_business_card_request(id)
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.GetBusinessCardInfoCall do |xml|
+          xml.BusinessCardFilter do |xml|
+            xml.BusinessCardId(id)
+          end
+        end
+      end
     end
 
   end
