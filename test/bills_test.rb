@@ -19,8 +19,7 @@ class BillsTest < ShoehornTest
 
   context "parsing" do
     should "retrieve a list of Bills" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_bill_call_response_1.xml'))
+      connection = mock_response('get_bill_call_response_1.xml')
       bills = connection.bills
       assert_equal 2, bills.size
       assert_equal "123884", bills[0].id
@@ -38,15 +37,13 @@ class BillsTest < ShoehornTest
     end
 
     should "retrieve the total number of available bills" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_bill_call_response_1.xml'))
+      connection = mock_response('get_bill_call_response_1.xml')
       bills = connection.bills
       assert_equal 2, bills.matched_count
     end
 
     should "retrieve an array of images for each bill" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_bill_call_response_1.xml'))
+      connection = mock_response('get_bill_call_response_1.xml')
       bills = connection.bills
       assert_equal 2, bills[0].images.size
       assert_equal "1", bills[0].images[0].index
@@ -57,8 +54,7 @@ class BillsTest < ShoehornTest
   
   context "find_by_id" do
     should "return a single bill" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_bill_info_call_response.xml'))
+      connection = mock_response('get_bill_info_call_response.xml')
       bill = connection.bills.find_by_id("123884")
       assert_equal "123884", bill.id
       assert_equal "", bill.envelope_code

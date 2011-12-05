@@ -19,8 +19,7 @@ class BusinessCardsTest < ShoehornTest
 
   context "parsing" do
     should "retrieve a list of business cards" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_business_card_call_response_1.xml'))
+      connection = mock_response('get_business_card_call_response_1.xml') 
       business_cards = connection.business_cards
       assert_equal 4, business_cards.size
       assert_equal "331378049", business_cards[0].id
@@ -45,9 +44,8 @@ class BusinessCardsTest < ShoehornTest
       assert_equal "met at downtown Durham networking event", business_cards[0].note
     end
 
-    should "retrieve the total number of available receipts" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_business_card_call_response_1.xml'))
+    should "retrieve the total number of available receipts" do     
+      connection = mock_response('get_business_card_call_response_1.xml')
       receipts = connection.business_cards   
       assert_equal 74, receipts.matched_count
     end  
@@ -55,8 +53,7 @@ class BusinessCardsTest < ShoehornTest
  
   context "find_by_id" do
     should "return a single business card" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_business_card_info_call_response.xml'))
+      connection = mock_response('get_business_card_info_call_response.xml')
       business_card = connection.business_cards.find_by_id("331378049")
       assert_equal "331378049", business_card.id
       assert_equal "Richard", business_card.first_name

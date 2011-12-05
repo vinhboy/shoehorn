@@ -19,8 +19,7 @@ class ReceiptsTest < ShoehornTest
 
   context "parsing" do
     should "retrieve a list of receipts" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_receipt_call_response_1.xml'))
+      connection = mock_response('get_receipt_call_response_1.xml')
       receipts = connection.receipts
       assert_equal 2, receipts.size
       assert_equal "23984923842", receipts[0].id
@@ -43,15 +42,13 @@ class ReceiptsTest < ShoehornTest
     end
 
     should "retrieve the total number of available receipts" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_receipt_call_response_1.xml'))
+      connection = mock_response('get_receipt_call_response_1.xml')
       receipts = connection.receipts   
       assert_equal 2, receipts.matched_count
     end  
 
     should "retrieve an array of categories for each receipt" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_receipt_call_response_1.xml'))
+      connection = mock_response('get_receipt_call_response_1.xml')
       receipts = connection.receipts   
       assert_equal 3, receipts[0].categories.size
       assert_equal "23423342", receipts[0].categories[0].id
@@ -59,8 +56,7 @@ class ReceiptsTest < ShoehornTest
     end
 
     should "retrieve an array of images for each receipt" do
-      connection = Shoehorn::Connection.new
-      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT, :body => file_contents('get_receipt_call_response_1.xml'))
+      connection = mock_response('get_receipt_call_response_1.xml')
       receipts = connection.receipts   
       assert_equal 3, receipts[0].images.size
       assert_equal "1", receipts[0].images[0].index
