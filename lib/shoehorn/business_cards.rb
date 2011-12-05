@@ -87,6 +87,28 @@ module Shoehorn
       document.elements["GeneratePdfBusinessCardReportCallResponse"].elements["URL"].text
     end
 
+    # Returns a hash of export options and whether they are enabled
+    # {"DEFAULT" => true, "EVERNOTE" => true, "GOOGLE_MAIL" => true, "YAHOO_MAIL" => false}
+    def get_business_card_exports
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.GetBusinessCardExportsCall
+      end
+      response = connection.post_xml(xml)
+      exports = Hash.new
+      document = REXML::Document.new(response)
+      document.elements.collect("//Export") do |export_element|
+        begin
+          id = export_element.elements["Id"].text
+          enabled = (export_element.elements["Enabled"].text == "true")
+          exports[id] = enabled
+        end
+      end
+      exports
+    end
+
 private
     def get_business_cards
       request = build_business_card_request

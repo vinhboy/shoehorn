@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetBusinessCardExportsCallResponse>
+    <Exports>
+        <Export>
+            <Id>DEFAULT</Id>
+            <Name>Default</Name>
+            <Enabled>true</Enabled>    <!-- Always enabled -->
+        </Export>
+        <Export>
+            <Id>EVERNOTE</Id>
+            <Name>Evernote</Name>
+            <Enabled>true</Enabled>    <!-- Enabled if user has set Evernote address -->
+        </Export>
+        <Export>
+            <Id>GOOGLE_MAIL</Id>
+            <Name>Google Mail</Name>
+            <Enabled>true</Enabled>    <!-- Enabled if user has authorized with Google -->
+        </Export>
+        <Export>
+            <Id>YAHOO_MAIL</Id>
+            <Name>Yahoo Mail</Name>
+            <Enabled>false</Enabled>   <!-- Enabled if user has authorized with Yahoo -->
+        </Export>
+    </Exports>
+</GetBusinessCardExportsCallResponse>
