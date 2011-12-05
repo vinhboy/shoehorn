@@ -89,6 +89,11 @@ class BusinessCardsTest < ShoehornTest
       assert_equal 140, cards
       assert_equal 70, pages
     end
+
+    should "Get a URL for the PDF" do 
+      connection = mock_response('generate_pdf_business_card_report_call_response.xml') 
+      assert_equal "https://app.shoeboxed.com/api/export/pdf-business-cards/198375212/65708a18ea05969e72f69dc289077fff", connection.business_cards.generate_pdf_business_card_report
+    end
   end
   
 end

@@ -74,6 +74,19 @@ module Shoehorn
       return number_of_cards, number_of_pages
     end
 
+    # Returns a URL for one-time download of Business Cards as PDF
+    def generate_pdf_business_card_report
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.GeneratePdfBusinessCardReport
+      end
+      response = connection.post_xml(xml)
+      document = REXML::Document.new(response)
+      document.elements["GeneratePdfBusinessCardReportCallResponse"].elements["URL"].text
+    end
+
 private
     def get_business_cards
       request = build_business_card_request
