@@ -1,5 +1,9 @@
+require 'rexml/document'
+require 'builder'
+
 require 'shoehorn/errors'
-require 'shoehorn/connection'
+require 'shoehorn/connection'  
+require 'shoehorn/documents_base'
 require 'shoehorn/bills'
 require 'shoehorn/bill'
 require 'shoehorn/business_cards'

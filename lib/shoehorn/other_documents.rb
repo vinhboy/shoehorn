@@ -1,16 +1,10 @@
 module Shoehorn
-  class OtherDocuments < Array
-
-    attr_accessor :connection, :matched_count
+  class OtherDocuments < DocumentsBase
 
     def initialize(connection)
       @connection = connection
       other_documents, @matched_count = get_other_documents
       super(other_documents || [])
-    end
-
-    def refresh
-      initialize(@connection)
     end
 
     def self.parse(xml)

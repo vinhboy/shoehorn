@@ -1,19 +1,10 @@
-require 'rexml/document'
-require 'builder'
-
 module Shoehorn
-  class Receipts < Array
-
-    attr_accessor :connection, :matched_count
+  class Receipts < DocumentsBase
 
     def initialize(connection)
       @connection = connection
       receipts, @matched_count = get_receipts
       super(receipts || [])
-    end
-
-    def refresh
-      initialize(@connection)
     end
 
     def self.parse(xml)

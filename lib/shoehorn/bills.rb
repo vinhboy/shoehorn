@@ -1,16 +1,10 @@
 module Shoehorn
-  class Bills < Array
-
-    attr_accessor :connection, :matched_count
+  class Bills < DocumentsBase
 
     def initialize(connection)
       @connection = connection
       bills, @matched_count = get_bills
       super(bills || [])
-    end
-
-    def refresh
-      initialize(@connection)
     end
 
     def self.parse(xml)
