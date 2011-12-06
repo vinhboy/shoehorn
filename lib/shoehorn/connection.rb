@@ -55,6 +55,14 @@ module Shoehorn
       @categories
     end
 
+    def expense_reports
+      unless @expense_reports_initialized
+        @expense_reports = Shoehorn::ExpenseReports.new(self)
+        @expense_reports_initialized = true
+      end
+      @expense_reports
+    end
+
     def other_documents
       unless @other_documents_initialized
         @other_documents = Shoehorn::OtherDocuments.new(self)

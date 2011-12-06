@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetPdfExpenseReportsCallResponse>
+    <Reports>
+        <Report>
+            <Id>1902938</Id>
+            <Name>Vacation Expenses</Name>
+            <Date>07/11/2011</Date>
+            <NumPages>3</NumPages>
+            <URL>https://app.shoeboxed.com/api/export/pdf-expenses/1902938/851d1b6e82b1d28b1cef6f9f6eebbb19</URL>
+        </Report>
+        <Report>
+            <Id>3223845</Id>
+            <Name>Groceries</Name>
+            <Date>08/23/2011</Date>
+            <NumPages>5</NumPages>
+            <URL>https://app.shoeboxed.com/api/export/pdf-expenses/3223845/276237b715cba0c3e9ee199c693dd46b</URL>
+        </Report>
+    </Reports>
+</GetPdfExpenseReportsCallResponse>

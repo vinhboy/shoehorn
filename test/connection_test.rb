@@ -178,6 +178,23 @@ class ConnectionTest <ShoehornTest
       categories.refresh
     end
 
+    should "initialize expense reports when first accessed" do
+      Shoehorn::ExpenseReports.any_instance.expects(:get_expense_reports).once
+      expense_reports = @connection.expense_reports
+    end   
+    
+    should "not initialize expense reports on second access" do
+      Shoehorn::ExpenseReports.any_instance.expects(:get_expense_reports).once
+      expense_reports = @connection.expense_reports
+      expense_reports = @connection.expense_reports
+    end
+    
+    should "initialize expense reports on refresh" do
+      expense_reports = @connection.expense_reports
+      Shoehorn::ExpenseReports.any_instance.expects(:get_expense_reports).once
+      expense_reports.refresh
+    end
+
     should "initialize other documents when first accessed" do
       Shoehorn::OtherDocuments.any_instance.expects(:get_other_documents).once
       other_documents = @connection.other_documents
