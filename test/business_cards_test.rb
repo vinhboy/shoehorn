@@ -113,13 +113,22 @@ class BusinessCardsTest < ShoehornTest
       assert !connection.business_cards.notify_preference
     end       
                                                     
-    # Worth testing this live?
+    # TODO: Worth testing this live?
     should_eventually "Allow setting auto-share mode"    
     
     should "Get the viral text" do
       connection = mock_response('get_viral_business_card_email_text_call_response_off.xml')
       assert_equal "The email text...", connection.business_cards.get_viral_business_card_email_text
-    end
+    end  
+    
+    should "Get the user's auto-share contact details" do
+      connection = mock_response('get_auto_share_contact_details_call_response.xml')
+      h = {:first_name => "John", :last_name => "Doe", :email => "john.doe@gmail.com", :additional_contact_info => "Only email on weekends"} 
+      assert_equal h, connection.business_cards.auto_share_contact_details
+    end  
+    
+    # TODO: Worth testing this live?
+    should_eventually "Allow updating auto-share contact details"    
   end
 
 end

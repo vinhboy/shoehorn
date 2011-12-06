@@ -118,7 +118,6 @@ module Shoehorn
         xml.GetBusinessCardNotifyPreferenceCall
       end
       response = connection.post_xml(xml)
-      exports = Hash.new
       document = REXML::Document.new(response)
       document.elements["GetBusinessCardNotifyPreferenceCallResponse"].elements["BusinessCardNotifyPreference"].text == "1"
     end
@@ -151,11 +150,53 @@ module Shoehorn
         xml.GetViralBusinessCardEmailTextCall
       end
       response = connection.post_xml(xml)
-      exports = Hash.new
       document = REXML::Document.new(response)
       document.elements["GetViralBusinessCardEmailTextCallResponse"].elements["ViralEmailText"].text
     end
     
+    # Get user's contact information that is sent out with business cards
+    def auto_share_contact_details
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.GetAutoShareContactDetailsCall
+      end
+      response = connection.post_xml(xml)
+      details = Hash.new
+      document = REXML::Document.new(response)
+      details_element = document.elements["GetAutoShareContactDetailsCallResponse"]
+      details[:first_name] = details_element.elements["FirstName"].text
+      details[:last_name] = details_element.elements["LastName"].text
+      details[:email] = details_element.elements["Email"].text
+      details[:additional_contact_info] = details_element.elements["AdditionalContactInfo"].text    
+      details
+    end
+
+    # Set user's contact information that is sent out with business cards 
+    # value should be a hash {:first_name => "John", :last_name => "Doe", :email => "John.Doe@example.com", :additional_contact_info => "Only email on weekdays"}
+    def auto_share_contact_details=(value)                          
+      first_name = value[:first_name] || ''
+      last_name = value[:last_name] || ''
+      email = value[:email] || ''
+      additional_contact_info = value[:additional_contact_info] || ''
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.UpdateAutoShareContactDetailsCall do |xml|
+          xml.FirstName(first_name)
+          xml.LastName(last_name)
+          xml.Email(email)
+          xml.AdditionalContactDetails(additional_contact_details)
+        end
+      end
+      response = connection.post_xml(xml)
+      # TODO: Retrieve the new value to make sure it worked?  
+      # TODO: This can throw some specific efforts; see http://developer.shoeboxed.com/business-cards
+      value
+    end
+
 private
     def get_business_cards
       request = build_business_card_request

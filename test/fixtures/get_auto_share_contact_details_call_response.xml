@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetAutoShareContactDetailsCallResponse>
+    <FirstName>John</FirstName>
+    <LastName>Doe</LastName>
+    <Email>john.doe@gmail.com</Email>
+    <AdditionalContactInfo>Only email on weekends</AdditionalContactInfo>
+</GetAutoShareContactDetailsCallResponse>
