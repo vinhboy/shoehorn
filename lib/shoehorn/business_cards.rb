@@ -142,7 +142,20 @@ module Shoehorn
       # TODO: Retrieve the new value to make sure it worked?
       value
     end
-
+    
+    def get_viral_business_card_email_text
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.GetViralBusinessCardEmailTextCall
+      end
+      response = connection.post_xml(xml)
+      exports = Hash.new
+      document = REXML::Document.new(response)
+      document.elements["GetViralBusinessCardEmailTextCallResponse"].elements["ViralEmailText"].text
+    end
+    
 private
     def get_business_cards
       request = build_business_card_request

@@ -114,7 +114,12 @@ class BusinessCardsTest < ShoehornTest
     end       
                                                     
     # Worth testing this live?
-    should_eventually "Allow setting auto-share mode"
+    should_eventually "Allow setting auto-share mode"    
+    
+    should "Get the viral text" do
+      connection = mock_response('get_viral_business_card_email_text_call_response_off.xml')
+      assert_equal "The email text...", connection.business_cards.get_viral_business_card_email_text
+    end
   end
 
 end
