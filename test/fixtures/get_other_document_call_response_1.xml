@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetOtherDocumentCallResponse>
+    <OtherDocuments count="2">
+        <OtherDocument id="124532" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+            <Images count="4">
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/2" index="2"/>
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/3" index="3"/>
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/4" index="4"/>
+            </Images>
+        </OtherDocument>
+        <OtherDocument id="124538" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+            <Images count="2">
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+                <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+            </Images>
+        </OtherDocument>
+    </OtherDocuments>
+</GetOtherDocumentCallResponse>
