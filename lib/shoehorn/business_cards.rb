@@ -4,7 +4,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       initialize_options
-      business_cards, @matched_count = get_business_cards
+      business_cards, self.matched_count = get_business_cards
       super(business_cards || [])
     end
 

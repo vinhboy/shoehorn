@@ -44,7 +44,8 @@ class ReceiptsTest < ShoehornTest
     should "retrieve the total number of available receipts" do
       connection = mock_response('get_receipt_call_response_1.xml')
       receipts = connection.receipts
-      assert_equal 2, receipts.matched_count
+      assert_equal 2, receipts.matched_count  
+      assert_equal 1, receipts.total_pages
     end
 
     should "retrieve an array of categories for each receipt" do

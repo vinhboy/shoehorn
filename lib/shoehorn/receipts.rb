@@ -4,7 +4,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       initialize_options
-      receipts, @matched_count = get_receipts
+      receipts, self.matched_count = get_receipts
       super(receipts || [])
     end
 

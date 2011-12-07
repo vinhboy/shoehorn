@@ -2,9 +2,9 @@ module Shoehorn
   class Bills < DocumentsBase
 
     def initialize(connection)
-      @connection = connection     
+      @connection = connection
       initialize_options
-      bills, @matched_count = get_bills
+      bills, self.matched_count = get_bills
       super(bills || [])
     end
 
@@ -57,8 +57,8 @@ private
       Bills.parse(response)
     end
 
-    def build_bill_request(options={}) 
-      process_options(options)  
+    def build_bill_request(options={})
+      process_options(options)
 
       xml = Builder::XmlMarkup.new
       xml.instruct!

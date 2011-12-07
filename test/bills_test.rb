@@ -39,7 +39,8 @@ class BillsTest < ShoehornTest
     should "retrieve the total number of available bills" do
       connection = mock_response('get_bill_call_response_1.xml')
       bills = connection.bills
-      assert_equal 2, bills.matched_count
+      assert_equal 2, bills.matched_count  
+      assert_equal 1, bills.total_pages
     end
 
     should "retrieve an array of images for each bill" do

@@ -4,7 +4,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       initialize_options
-      other_documents, @matched_count = get_other_documents
+      other_documents, self.matched_count = get_other_documents
       super(other_documents || [])
     end
 

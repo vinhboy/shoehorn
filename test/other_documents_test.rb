@@ -32,7 +32,8 @@ class OtherDocumentsTest < ShoehornTest
     should "retrieve the total number of available other documents" do
       connection = mock_response('get_other_document_call_response_1.xml')
       other_documents = connection.other_documents
-      assert_equal 2, other_documents.matched_count
+      assert_equal 2, other_documents.matched_count   
+      assert_equal 1, other_documents.total_pages
     end
 
     should "retrieve an array of images for each other document" do

@@ -1,7 +1,7 @@
 module Shoehorn
   class DocumentsBase  < Array
 
-    attr_accessor :connection, :matched_count, :per_page, :category_id, :modified_since, :current_page
+    attr_accessor :connection, :matched_count, :per_page, :category_id, :modified_since, :current_page, :total_pages
 
     def initialize_options
       unless @skip_initialize_options
@@ -9,6 +9,7 @@ module Shoehorn
         @category_id = nil
         @current_page = 1
         @modified_since = nil
+        @total_pages = 1
       end
     end
 
@@ -35,6 +36,14 @@ module Shoehorn
       status_hash
     end
 
+    def matched_count=(value)
+      if value
+        @total_pages = (value.to_i / @per_page.to_i)
+        @total_pages += 1 unless (value % @per_page == 0)
+      end
+      @matched_count = value
+    end
+
     # Resets if changing filters
     def category_id=(value)
       if value && (value != @category_id)
@@ -48,6 +57,15 @@ module Shoehorn
     def modified_since=(value)
       if value && (value != @modified_since)
         @modified_since = value
+        @skip_initialize_options = true
+        initialize(@connection)
+        @skip_initialize_options = false
+      end
+    end
+
+    def per_page=(value)
+      if per_page && (value != @per_page)
+        @per_page = value
         @skip_initialize_options = true
         initialize(@connection)
         @skip_initialize_options = false

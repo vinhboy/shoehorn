@@ -44,10 +44,11 @@ class BusinessCardsTest < ShoehornTest
       assert_equal "met at downtown Durham networking event", business_cards[0].note
     end
 
-    should "retrieve the total number of available receipts" do
+    should "retrieve the total number of available business cards" do
       connection = mock_response('get_business_card_call_response_1.xml')
-      receipts = connection.business_cards
-      assert_equal 74, receipts.matched_count
+      business_cards = connection.business_cards
+      assert_equal 74, business_cards.matched_count
+      assert_equal 2, business_cards.total_pages
     end
   end
 
