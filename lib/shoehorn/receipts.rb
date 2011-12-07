@@ -45,6 +45,14 @@ module Shoehorn
       return receipts, matched_count
     end
 
+    def find_by_id(id)
+      request = build_single_receipt_request(id)
+      response = connection.post_xml(request)
+
+      receipts, matched_count = Receipts.parse(response)
+      receipts.empty? ? nil : receipts[0]
+    end
+
 private
     def get_receipts
       request = build_receipt_request
@@ -75,5 +83,18 @@ private
 
     end
 
+    def build_single_receipt_request(id)
+      xml = Builder::XmlMarkup.new
+      xml.instruct!
+      xml.Request(:xmlns => "urn:sbx:apis:SbxBaseComponents") do |xml|
+        connection.requester_credentials_block(xml)
+        xml.GetReceiptInfoCall do |xml|
+          xml.ReceiptFilter do |xml|
+            xml.ReceiptId(id)
+          end
+        end
+      end
+    end
+    
   end
 end
