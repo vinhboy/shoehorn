@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    shoehorn (0.1.0)
+    shoehorn (0.3.0)
       builder
 
 GEM
