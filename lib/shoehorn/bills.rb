@@ -5,7 +5,7 @@ module Shoehorn
       @connection = connection
       initialize_options
       bills, self.matched_count = get_bills
-      super(bills || [])
+      @array = bills || []
     end
 
     def self.parse(xml)
@@ -52,7 +52,8 @@ module Shoehorn
 private
     def get_bills
       request = build_bill_request
-      response = connection.post_xml(request)
+      response = connection.post_xml(request)     
+      pages_retrieved << current_page
 
       Bills.parse(response)
     end

@@ -161,4 +161,15 @@ class BusinessCardsTest < ShoehornTest
     end
   end
 
+  context "pagination" do
+    setup do
+      connection = mock_response('get_business_card_call_response_1.xml')
+      @business_cards = connection.business_cards
+    end
+
+    should "record initial page retrieval" do
+      assert_equal [1], @business_cards.pages_retrieved
+    end
+  end
+  
 end

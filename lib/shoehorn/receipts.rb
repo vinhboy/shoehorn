@@ -5,7 +5,7 @@ module Shoehorn
       @connection = connection
       initialize_options
       receipts, self.matched_count = get_receipts
-      super(receipts || [])
+      @array = receipts || []
     end
 
     def self.parse(xml)
@@ -58,6 +58,7 @@ private
     def get_receipts
       request = build_receipt_request
       response = connection.post_xml(request)
+      pages_retrieved << current_page
 
       Receipts.parse(response)
     end

@@ -5,7 +5,7 @@ module Shoehorn
       @connection = connection
       initialize_options
       other_documents, self.matched_count = get_other_documents
-      super(other_documents || [])
+      @array = other_documents || []
     end
 
     def self.parse(xml)
@@ -46,6 +46,7 @@ private
     def get_other_documents
       request = build_other_document_request
       response = connection.post_xml(request)
+      pages_retrieved << current_page
 
       OtherDocuments.parse(response)
     end

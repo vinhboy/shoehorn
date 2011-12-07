@@ -13,7 +13,7 @@ class BillsTest < ShoehornTest
     end
 
     should "return an array of bills" do
-      assert @bills.is_a?(Array)
+       assert @bills.is_a?(Array)
     end
   end
 
@@ -39,7 +39,7 @@ class BillsTest < ShoehornTest
     should "retrieve the total number of available bills" do
       connection = mock_response('get_bill_call_response_1.xml')
       bills = connection.bills
-      assert_equal 2, bills.matched_count  
+      assert_equal 2, bills.matched_count
       assert_equal 1, bills.total_pages
     end
 
@@ -106,6 +106,17 @@ class BillsTest < ShoehornTest
       Bills.any_instance.expects(:get_bills).once
       @bills.modified_since = Date.new(2011, 12, 10)
       @bills.modified_since = Date.new(2011, 12, 10)
+    end
+  end
+
+  context "pagination" do
+    setup do
+      connection = mock_response('get_bill_call_response_1.xml')
+      @bills = connection.bills
+    end
+
+    should "record initial page retrieval" do
+      assert_equal [1], @bills.pages_retrieved
     end
   end
 

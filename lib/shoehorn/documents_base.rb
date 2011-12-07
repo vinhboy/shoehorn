@@ -1,20 +1,45 @@
 module Shoehorn
-  class DocumentsBase  < Array
+  class DocumentsBase
+    include Enumerable
 
-    attr_accessor :connection, :matched_count, :per_page, :category_id, :modified_since, :current_page, :total_pages
+    # TODO: Can be a bit less public here when done testing, I'm sure
+    attr_accessor :connection, :matched_count, :per_page, :category_id, :modified_since, :current_page, :total_pages, :pages_retrieved, :array
 
     def initialize_options
       unless @skip_initialize_options
+        @array = Array.new
         @per_page = 50
         @category_id = nil
         @current_page = 1
         @modified_since = nil
         @total_pages = 1
+        @pages_retrieved = []
       end
     end
 
     def refresh
       initialize(@connection)
+    end
+
+    # array methods
+    def is_a?(klass)
+      @array.is_a?(klass)
+    end
+      
+    def inspect
+      @array.inspect
+    end
+    
+    def [](i)
+      @array[i]
+    end
+
+    def each
+      @array.each
+    end
+
+    def method_missing(method, *args, &block)
+      @array.send(method, *args, &block)
     end
 
     # Requires an inserter id from an upload call
@@ -48,6 +73,11 @@ module Shoehorn
     def category_id=(value)
       if value && (value != @category_id)
         @category_id = value
+        @per_page = 50
+        @current_page = 1
+        @modified_since = nil
+        @total_pages = 1
+        @pages_retrieved = []
         @skip_initialize_options = true
         initialize(@connection)
         @skip_initialize_options = false
@@ -57,6 +87,11 @@ module Shoehorn
     def modified_since=(value)
       if value && (value != @modified_since)
         @modified_since = value
+        @per_page = 50
+        @category_id = nil
+        @current_page = 1
+        @total_pages = 1
+        @pages_retrieved = []
         @skip_initialize_options = true
         initialize(@connection)
         @skip_initialize_options = false
@@ -66,6 +101,11 @@ module Shoehorn
     def per_page=(value)
       if per_page && (value != @per_page)
         @per_page = value
+        @category_id = nil
+        @current_page = 1
+        @modified_since = nil
+        @total_pages = 1
+        @pages_retrieved = []
         @skip_initialize_options = true
         initialize(@connection)
         @skip_initialize_options = false

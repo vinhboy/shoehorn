@@ -5,7 +5,7 @@ module Shoehorn
       @connection = connection
       initialize_options
       business_cards, self.matched_count = get_business_cards
-      super(business_cards || [])
+      @array = business_cards || []
     end
 
     def self.parse(xml)
@@ -193,6 +193,7 @@ private
     def get_business_cards
       request = build_business_card_request
       response = connection.post_xml(request)
+      pages_retrieved << current_page
 
       BusinessCards.parse(response)
     end

@@ -95,4 +95,15 @@ class OtherDocumentsTest < ShoehornTest
     end
   end
   
+  context "pagination" do
+    setup do
+      connection = mock_response('get_other_document_call_response_1.xml')
+      @other_documents = connection.other_documents
+    end
+
+    should "record initial page retrieval" do
+      assert_equal [1], @other_documents.pages_retrieved
+    end
+  end
+  
 end

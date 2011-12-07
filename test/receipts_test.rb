@@ -44,7 +44,7 @@ class ReceiptsTest < ShoehornTest
     should "retrieve the total number of available receipts" do
       connection = mock_response('get_receipt_call_response_1.xml')
       receipts = connection.receipts
-      assert_equal 2, receipts.matched_count  
+      assert_equal 2, receipts.matched_count
       assert_equal 1, receipts.total_pages
     end
 
@@ -145,6 +145,17 @@ class ReceiptsTest < ShoehornTest
       Receipts.any_instance.expects(:get_receipts).once
       @receipts.modified_since = Date.new(2011, 12, 10)
       @receipts.modified_since = Date.new(2011, 12, 10)
+    end
+  end
+
+  context "pagination" do
+    setup do
+      connection = mock_response('get_receipt_call_response_1.xml')
+      @receipts = connection.receipts
+    end
+
+    should "record initial page retrieval" do
+      assert_equal [1], @receipts.pages_retrieved
     end
   end
 
