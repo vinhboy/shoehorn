@@ -10,3 +10,4 @@
 * find\_by\_id should probably update the internal cached array.
 * rshoeboxed compat mode?
 * uploads support
+* allow users to set page size

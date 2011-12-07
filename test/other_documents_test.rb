@@ -64,5 +64,34 @@ class OtherDocumentsTest < ShoehornTest
     should_eventually "return nil if no such other document"
 
   end
+  
+  context "options" do   
+    setup do
+      connection = mock_response('get_other_document_call_response_1.xml')
+      @other_documents = connection.other_documents
+    end
+    
+    should "allow setting modified_since" do
+      @other_documents.modified_since = Date.new(2011, 12, 10)
+      assert_equal Date.new(2011, 12, 10), @other_documents.modified_since  
+    end
+    
+    should "know when the results are filtered" do
+      assert !@other_documents.filtered?
+      @other_documents.modified_since = Date.new(2011, 12, 10)
+      assert @other_documents.filtered?
+    end
 
+    should "reinitialize if changing modified_since" do
+      OtherDocuments.any_instance.expects(:get_other_documents).once
+      @other_documents.modified_since = Date.new(2011, 12, 10)
+    end
+
+    should "not reinitialize if modified_since remains unchanged" do
+      OtherDocuments.any_instance.expects(:get_other_documents).once
+      @other_documents.modified_since = Date.new(2011, 12, 10)
+      @other_documents.modified_since = Date.new(2011, 12, 10)
+    end
+  end
+  
 end

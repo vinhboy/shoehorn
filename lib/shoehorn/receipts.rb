@@ -3,6 +3,7 @@ module Shoehorn
 
     def initialize(connection)
       @connection = connection
+      initialize_options
       receipts, @matched_count = get_receipts
       super(receipts || [])
     end
@@ -62,10 +63,7 @@ private
     end
 
     def build_receipt_request(options={})
-      results = options[:per_page] || 50
-      page_no = options[:page] || 1
-      category = options[:category_id]
-      modified_since = options[:modified_since]
+      process_options(options)
 
       xml = Builder::XmlMarkup.new
       xml.instruct!
@@ -73,9 +71,9 @@ private
         connection.requester_credentials_block(xml)
         xml.GetReceiptCall do |xml|
           xml.ReceiptFilter do |xml|
-            xml.Results(results)
-            xml.PageNo(page_no)
-            xml.Category(category) if category
+            xml.Results(per_page)
+            xml.PageNo(current_page)
+            xml.Category(category_id) if category_id
             xml.ModifiedSince(modified_since) if modified_since
           end
         end

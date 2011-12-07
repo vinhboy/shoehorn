@@ -3,6 +3,7 @@ module Shoehorn
 
     def initialize(connection)
       @connection = connection
+      initialize_options
       business_cards, @matched_count = get_business_cards
       super(business_cards || [])
     end
@@ -197,9 +198,7 @@ private
     end
 
     def build_business_card_request(options={})
-      results = options[:per_page] || 50
-      page_no = options[:page] || 1
-      modified_since = options[:modified_since]
+      process_options(options)
 
       xml = Builder::XmlMarkup.new
       xml.instruct!
@@ -207,8 +206,8 @@ private
         connection.requester_credentials_block(xml)
         xml.GetBusinessCardCall do |xml|
           xml.BusinessCardFilter do |xml|
-            xml.Results(results)
-            xml.PageNo(page_no)
+            xml.Results(per_page)
+            xml.PageNo(current_page)
             xml.ModifiedSince(modified_since) if modified_since
           end
         end

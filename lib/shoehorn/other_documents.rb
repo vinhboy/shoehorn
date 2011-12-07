@@ -3,6 +3,7 @@ module Shoehorn
 
     def initialize(connection)
       @connection = connection
+      initialize_options
       other_documents, @matched_count = get_other_documents
       super(other_documents || [])
     end
@@ -50,9 +51,7 @@ private
     end
 
     def build_other_document_request(options={})
-      results = options[:per_page] || 50
-      page_no = options[:page] || 1
-      modified_since = options[:modified_since]
+      process_options(options)
 
       xml = Builder::XmlMarkup.new
       xml.instruct!
@@ -60,8 +59,8 @@ private
         connection.requester_credentials_block(xml)
         xml.GetOtherDocumentCall do |xml|
           xml.OtherDocumentFilter do |xml|
-            xml.Results(results)
-            xml.PageNo(page_no)
+            xml.Results(per_page)
+            xml.PageNo(current_page)
             xml.ModifiedSince(modified_since) if modified_since
           end
         end

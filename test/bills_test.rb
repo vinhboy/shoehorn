@@ -51,7 +51,7 @@ class BillsTest < ShoehornTest
     end
 
   end
-  
+
   context "find_by_id" do
     should "return a single bill" do
       connection = mock_response('get_bill_info_call_response.xml')
@@ -68,15 +68,44 @@ class BillsTest < ShoehornTest
       assert_equal "125.89", bill.converted_total
       assert_equal "$125.89", bill.formatted_document_total
       assert_equal "$125.89", bill.formatted_converted_total
-      
+
       assert_equal 2, bill.images.size
       assert_equal "1", bill.images[0].index
       assert_equal "https://app.shoeboxed.com/api/document/jpg/bill/123884/194ae40d7dfd8b2a4b3089991d1939e3/1", bill.images[0].imgurl
     end
-    
+
     # TODO: Check what Shoeboxed returns if ID doesn't match
     should_eventually "return nil if no such bill"
-    
+
   end
-  
+
+  context "options" do
+    setup do
+      connection = mock_response('get_bill_call_response_1.xml')
+      @bills = connection.bills
+    end
+
+    should "allow setting modified_since" do
+      @bills.modified_since = Date.new(2011, 12, 10)
+      assert_equal Date.new(2011, 12, 10), @bills.modified_since
+    end
+
+    should "know when the results are filtered" do
+      assert !@bills.filtered?
+      @bills.modified_since = Date.new(2011, 12, 10)
+      assert @bills.filtered?
+    end
+
+    should "reinitialize if changing modified_since" do
+      Bills.any_instance.expects(:get_bills).once
+      @bills.modified_since = Date.new(2011, 12, 10)
+    end
+
+    should "not reinitialize if modified_since remains unchanged" do
+      Bills.any_instance.expects(:get_bills).once
+      @bills.modified_since = Date.new(2011, 12, 10)
+      @bills.modified_since = Date.new(2011, 12, 10)
+    end
+  end
+
 end

@@ -101,8 +101,8 @@ class BusinessCardsTest < ShoehornTest
       connection = mock_response('get_business_cards_exports_call_response.xml')
       h = {"DEFAULT" => true, "EVERNOTE" => true, "GOOGLE_MAIL" => true, "YAHOO_MAIL" => false}
       assert_equal h, connection.business_cards.get_business_card_exports
-    end  
-    
+    end
+
     should "Know when business card auto-share mode is on" do
       connection = mock_response('get_business_card_notify_preference_call_response_on.xml')
       assert connection.business_cards.notify_preference
@@ -111,24 +111,53 @@ class BusinessCardsTest < ShoehornTest
     should "Know when business card auto-share mode is off" do
       connection = mock_response('get_business_card_notify_preference_call_response_off.xml')
       assert !connection.business_cards.notify_preference
-    end       
-                                                    
+    end
+
     # TODO: Worth testing this live?
-    should_eventually "Allow setting auto-share mode"    
-    
+    should_eventually "Allow setting auto-share mode"
+
     should "Get the viral text" do
       connection = mock_response('get_viral_business_card_email_text_call_response_off.xml')
       assert_equal "The email text...", connection.business_cards.get_viral_business_card_email_text
-    end  
-    
+    end
+
     should "Get the user's auto-share contact details" do
       connection = mock_response('get_auto_share_contact_details_call_response.xml')
-      h = {:first_name => "John", :last_name => "Doe", :email => "john.doe@gmail.com", :additional_contact_info => "Only email on weekends"} 
+      h = {:first_name => "John", :last_name => "Doe", :email => "john.doe@gmail.com", :additional_contact_info => "Only email on weekends"}
       assert_equal h, connection.business_cards.auto_share_contact_details
-    end  
-    
+    end
+
     # TODO: Worth testing this live?
-    should_eventually "Allow updating auto-share contact details"    
+    should_eventually "Allow updating auto-share contact details"
+  end
+
+  context "options" do
+    setup do
+      connection = mock_response('get_business_card_call_response_1.xml')
+      @business_cards = connection.business_cards
+    end
+
+    should "allow setting modified_since" do
+      @business_cards.modified_since = Date.new(2011, 12, 10)
+      assert_equal Date.new(2011, 12, 10), @business_cards.modified_since
+    end
+
+    should "know when the results are filtered" do
+      assert !@business_cards.filtered?
+      @business_cards.modified_since = Date.new(2011, 12, 10)
+      assert @business_cards.filtered?
+    end
+
+    should "reinitialize if changing modified_since" do
+      BusinessCards.any_instance.expects(:get_business_cards).once
+      @business_cards.modified_since = Date.new(2011, 12, 10)
+    end
+
+    should "not reinitialize if modified_since remains unchanged" do
+      BusinessCards.any_instance.expects(:get_business_cards).once
+      @business_cards.modified_since = Date.new(2011, 12, 10)
+      @business_cards.modified_since = Date.new(2011, 12, 10)
+    end
   end
 
 end

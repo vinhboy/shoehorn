@@ -96,5 +96,56 @@ class ReceiptsTest < ShoehornTest
 
   end
 
+  context "options" do
+    setup do
+      connection = mock_response('get_receipt_call_response_1.xml')
+      @receipts = connection.receipts
+    end
+
+    should "allow setting modified_since" do
+      @receipts.modified_since = Date.new(2011, 12, 10)
+      assert_equal Date.new(2011, 12, 10), @receipts.modified_since
+    end
+
+    should "allow setting category_id" do
+      @receipts.category_id = 5
+      assert_equal 5, @receipts.category_id
+    end
+
+    should "know when the results are filtered by date" do
+      assert !@receipts.filtered?
+      @receipts.modified_since = Date.new(2011, 12, 10)
+      assert @receipts.filtered?
+    end
+
+    should "know when the results are filtered by category" do
+      assert !@receipts.filtered?
+      @receipts.category_id = 5
+      assert @receipts.filtered?
+    end
+
+    should "reinitialize if changing category" do
+      Receipts.any_instance.expects(:get_receipts).once
+      @receipts.modified_since = Date.new(2011, 12, 10)
+    end
+
+    should "not reinitialize if category remains unchanged" do
+      Receipts.any_instance.expects(:get_receipts).once
+      @receipts.modified_since = Date.new(2011, 12, 10)
+      @receipts.modified_since = Date.new(2011, 12, 10)
+    end
+
+    should "reinitialize if changing modified_since" do
+      Receipts.any_instance.expects(:get_receipts).once
+      @receipts.modified_since = Date.new(2011, 12, 10)
+    end
+
+    should "not reinitialize if modified_since remains unchanged" do
+      Receipts.any_instance.expects(:get_receipts).once
+      @receipts.modified_since = Date.new(2011, 12, 10)
+      @receipts.modified_since = Date.new(2011, 12, 10)
+    end
+  end
+
 end
 

@@ -2,7 +2,8 @@ module Shoehorn
   class Bills < DocumentsBase
 
     def initialize(connection)
-      @connection = connection
+      @connection = connection     
+      initialize_options
       bills, @matched_count = get_bills
       super(bills || [])
     end
@@ -56,10 +57,8 @@ private
       Bills.parse(response)
     end
 
-    def build_bill_request(options={})
-      results = options[:per_page] || 50
-      page_no = options[:page] || 1
-      modified_since = options[:modified_since]
+    def build_bill_request(options={}) 
+      process_options(options)  
 
       xml = Builder::XmlMarkup.new
       xml.instruct!
@@ -67,8 +66,8 @@ private
         connection.requester_credentials_block(xml)
         xml.GetBillCall do |xml|
           xml.BillFilter do |xml|
-            xml.Results(results)
-            xml.PageNo(page_no)
+            xml.Results(per_page)
+            xml.PageNo(current_page)
             xml.ModifiedSince(modified_since) if modified_since
           end
         end
