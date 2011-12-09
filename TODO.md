@@ -10,3 +10,4 @@
 * rshoeboxed compat mode?
 * uploads support
 * allow users to set page size
+* allow setting params before reading so setting modified\_date doesn't result in double read
