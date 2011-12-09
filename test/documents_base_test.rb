@@ -33,19 +33,19 @@ class DocumentsBaseTest < ShoehornTest
         @connection = mock_response('get_document_status_call_response.xml')
       end                                                              
       
-      should "normalize String to formatted string" do
+      should "normalize String to  DateTime" do
         @connection.receipts.modified_since = '2011-12-01'
-        assert_equal "12/01/2011", @connection.receipts.modified_since
+        assert_equal DateTime.new(2011, 12, 1), @connection.receipts.modified_since
       end                                                                      
       
-      should "normalize DateTime to String" do
+      should "normalize DateTime to DateTime" do
         @connection.receipts.modified_since = DateTime.new(2011, 12, 01)
-        assert_equal "12/01/2011", @connection.receipts.modified_since
+        assert_equal DateTime.new(2011, 12, 1), @connection.receipts.modified_since
       end                                                              
       
-      should "normalize Date to String" do
+      should "normalize Date to DateTime" do
         @connection.receipts.modified_since = Date.new(2011, 12, 01)
-        assert_equal "12/01/2011", @connection.receipts.modified_since
+        assert_equal DateTime.new(2011, 12, 1), @connection.receipts.modified_since
       end
       
       should "raise if fed junk" do

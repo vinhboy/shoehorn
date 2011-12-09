@@ -105,7 +105,7 @@ class ReceiptsTest < ShoehornTest
 
     should "allow setting modified_since" do
       @receipts.modified_since = Date.new(2011, 12, 10)
-      assert_equal "12/10/2011", @receipts.modified_since
+      assert_equal DateTime.new(2011, 12, 10), @receipts.modified_since
     end
 
     should "allow setting category_id" do

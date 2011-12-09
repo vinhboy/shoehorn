@@ -109,20 +109,22 @@ module Shoehorn
     def modified_since=(value)
       return if value.nil?
 
+      # convert to DateTime so to_s will give us ISO 8601 value for XML
       if value.is_a? String
-        value_date = Date.new(*Date._parse(value, false).values_at(:year, :mon, :mday))
+        value_datetime = DateTime.new(*Date._parse(value, false).values_at(:year, :mon, :mday))
       elsif value.is_a? DateTime
-        value_date = Date.new(value.year, value.month, value.day)
-      elsif value.is_a? Date
-        value_date = value
+        value_datetime = value
+      elsif value.is_a? Date || (value.respond_to?('year') && value.respond_to?('month') && value.respond_to('day'))
+        value_datetime = DateTime.new(value.year, value.month, value.day)
+      elsif value.respond_to?('to_datetime')
+        value_datetime = value.to_datetime
       else
-        raise Shoehorn::ParameterError
+        connection.logger.debug "Illegal #{value.class.name} value #{value} for modified_since: should be String, Date, or DateTime"
+        raise Shoehorn::ParameterError.new("Illegal #{value.class.name} value #{value} for modified_since: should be String, Date, or DateTime")
       end
 
-      value_string = value_date.strftime('%m/%d/%Y')
-
-      if value_string && (value_string != @modified_since)
-        @modified_since = value_string
+      if value_datetime && (value_datetime != @modified_since)
+        @modified_since = value_datetime
         @per_page = 50
         @category_id = nil
         @current_page = 1
