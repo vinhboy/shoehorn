@@ -2,7 +2,7 @@
 
 An implementation of the Shoeboxed (https://app.shoeboxed.com/) API. Consult the Shoeboxed API documentation (http://developer.shoeboxed.com/overview) for details of API operations.
 
-**WARNING WARNING WARNING: This gem is not ready for production use yet. See the note below about partial data retrieval. It also needs more testing with actual Shoeboxed accounts instead of mocked data. I plan to release a useable version by 12/15/11.**
+**WARNING WARNING WARNING: This gem is not ready for production use yet. Although it is mostly feature-complete, it has mainly been tested with mock data. I plan to release a useable version by 12/15/11.**
 
 ## What's Implemented
 
@@ -46,7 +46,7 @@ After successfully authenticating, you can retrieve the user's Shoeboxed data fr
 
 These collections are lazily initialized when they are first accessed. Each also supports a refresh method to update the data from Shoeboxed. Within the collections you'll find individual objects - Bill, BusinessCard, Category, ExpenseReport, OtherDocument, Receipt - containing the details of the data.
 
-**IMPORTANT - In the 0.3 release of shoehorn, these collections ONLY contain the first 50 documents of each type. This makes the library largely unusable for large accounts. Full pagination support is coming soon!**
+Although Shoeboxed returns collections in batches, this should be transparent to the calling application. In particular, things like Bills[123] and Receipts.each do |r| will retrieve all the pages of data that they need in the background as they are run. You may find some other array methods offer unexpected results. Please post a GitHub issue or send a pull request if you need one of these fixed.
 
 If you know the ID of a particular document on Shoeboxed, you can retrieve it directly with the find_by_id method on the appropriate collection:
 
@@ -68,7 +68,6 @@ Some other parts of the Shoeboxed API are also covered by this gem:
 
 ## What's Missing
 
-* Transparent pagination of large collections
 * Upload support
 * Cover sheet support
 * Ruby native data types for things like dates
@@ -80,7 +79,7 @@ Some of the tests depend on a live connection to Shoeboxed. To set this up, you 
 
 ## Footnotes
 
-Mike Gunderloy, MikeG1@larkfarm.com
+Author: Mike Gunderloy, MikeG1@larkfarm.com
 
 Thanks to https://github.com/bcurren/rshoeboxed for previous hard work on the Shoeboxed API. Some portions of this code originated with rshoeboxed.
 
