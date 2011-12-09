@@ -140,7 +140,7 @@ class BusinessCardsTest < ShoehornTest
 
     should "allow setting modified_since" do
       @business_cards.modified_since = Date.new(2011, 12, 10)
-      assert_equal Date.new(2011, 12, 10), @business_cards.modified_since
+      assert_equal "12/10/2011", @business_cards.modified_since
     end
 
     should "know when the results are filtered" do

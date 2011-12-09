@@ -88,7 +88,7 @@ class BillsTest < ShoehornTest
 
     should "allow setting modified_since" do
       @bills.modified_since = Date.new(2011, 12, 10)
-      assert_equal Date.new(2011, 12, 10), @bills.modified_since
+      assert_equal "12/10/2011", @bills.modified_since
     end
 
     should "know when the results are filtered" do

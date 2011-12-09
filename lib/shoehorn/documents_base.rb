@@ -107,8 +107,22 @@ module Shoehorn
     end
 
     def modified_since=(value)
-      if value && (value != @modified_since)
-        @modified_since = value
+      return if value.nil?
+
+      if value.is_a? String
+        value_date = Date.new(*Date._parse(value, false).values_at(:year, :mon, :mday))
+      elsif value.is_a? DateTime
+        value_date = Date.new(value.year, value.month, value.day)
+      elsif value.is_a? Date
+        value_date = value
+      else
+        raise Shoehorn::ParameterError
+      end
+
+      value_string = value_date.strftime('%m/%d/%Y')
+
+      if value_string && (value_string != @modified_since)
+        @modified_since = value_string
         @per_page = 50
         @category_id = nil
         @current_page = 1
