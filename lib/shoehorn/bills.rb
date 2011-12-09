@@ -4,10 +4,10 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       initialize_options
-      bills, self.matched_count = get_bills
+      bills, self.matched_count = get_page(1)
       @array = bills || []
     end
-
+    
     def self.parse(xml)
       bills = Array.new
       document = REXML::Document.new(xml)
@@ -48,16 +48,17 @@ module Shoehorn
       bills, matched_count = Bills.parse(response)
       bills.empty? ? nil : bills[0]
     end
-
-private
-    def get_bills
+       
+    def get_page(i) 
+      current_page = i
       request = build_bill_request
       response = connection.post_xml(request)     
       pages_retrieved << current_page
 
       Bills.parse(response)
     end
-
+    
+private
     def build_bill_request(options={})
       process_options(options)
 

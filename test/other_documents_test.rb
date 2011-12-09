@@ -32,7 +32,7 @@ class OtherDocumentsTest < ShoehornTest
     should "retrieve the total number of available other documents" do
       connection = mock_response('get_other_document_call_response_1.xml')
       other_documents = connection.other_documents
-      assert_equal 2, other_documents.matched_count   
+      assert_equal 2, other_documents.matched_count
       assert_equal 1, other_documents.total_pages
     end
 
@@ -65,18 +65,18 @@ class OtherDocumentsTest < ShoehornTest
     should_eventually "return nil if no such other document"
 
   end
-  
-  context "options" do   
+
+  context "options" do
     setup do
       connection = mock_response('get_other_document_call_response_1.xml')
       @other_documents = connection.other_documents
     end
-    
+
     should "allow setting modified_since" do
       @other_documents.modified_since = Date.new(2011, 12, 10)
-      assert_equal Date.new(2011, 12, 10), @other_documents.modified_since  
+      assert_equal Date.new(2011, 12, 10), @other_documents.modified_since
     end
-    
+
     should "know when the results are filtered" do
       assert !@other_documents.filtered?
       @other_documents.modified_since = Date.new(2011, 12, 10)
@@ -84,17 +84,17 @@ class OtherDocumentsTest < ShoehornTest
     end
 
     should "reinitialize if changing modified_since" do
-      OtherDocuments.any_instance.expects(:get_other_documents).once
+      OtherDocuments.any_instance.expects(:get_page).once
       @other_documents.modified_since = Date.new(2011, 12, 10)
     end
 
     should "not reinitialize if modified_since remains unchanged" do
-      OtherDocuments.any_instance.expects(:get_other_documents).once
+      OtherDocuments.any_instance.expects(:get_page).once
       @other_documents.modified_since = Date.new(2011, 12, 10)
       @other_documents.modified_since = Date.new(2011, 12, 10)
     end
   end
-  
+
   context "pagination" do
     setup do
       connection = mock_response('get_other_document_call_response_1.xml')
@@ -105,5 +105,43 @@ class OtherDocumentsTest < ShoehornTest
       assert_equal [1], @other_documents.pages_retrieved
     end
   end
-  
+
+  context "lazy array initialization" do
+    setup do
+      @connection = Shoehorn::Connection.new
+      # Register to return two pages in succession. This isn't ideal, but FakeWeb can't currently
+      # return different responses based on post parameters. See the FakeWeb readme.
+      FakeWeb.register_uri(:post, Shoehorn::Connection::API_ENDPOINT,
+        [{:body => file_contents('get_other_document_call_response_page_1.xml')},
+         {:body => file_contents('get_other_document_call_response_page_2.xml')}])
+    end
+
+    should "know the total array size after the first request" do
+      other_documents = @connection.other_documents
+      assert_equal 75, other_documents.size
+    end
+
+    should "only retrieve first page when initialized" do
+      other_documents = @connection.other_documents
+      assert_equal 50, other_documents.array.size
+    end
+
+    should "retrieve second page if needed" do
+      other_documents = @connection.other_documents
+      other_document = @connection.other_documents[74]
+      assert_equal 75, other_documents.array.size
+      assert_equal "124605", other_document.id
+      id = other_document.id
+    end
+
+    should "retrieve second page if iterating over the array" do
+      other_documents = @connection.other_documents
+      id = "0"
+      other_documents.each do |other_document|
+        id = other_document.id
+      end
+      assert_equal "124605", id
+      assert_equal 75, other_documents.array.size
+    end
+  end
 end

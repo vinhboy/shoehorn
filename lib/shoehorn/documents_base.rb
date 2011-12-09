@@ -25,17 +25,39 @@ module Shoehorn
     def is_a?(klass)
       @array.is_a?(klass)
     end
-      
+
     def inspect
       @array.inspect
     end
-    
+
     def [](i)
+      needed_page = (i.to_i / per_page.to_i) + 1
+      if !pages_retrieved.include? needed_page
+        get_pages(:from => current_page + 1, :to => needed_page)
+      end
       @array[i]
     end
 
+    def size
+      @matched_count
+    end
+
+    def get_pages(options = {})
+      from = options[:from] || 1
+      to = options[:to] || total_pages
+      from.upto(to) do |page|
+        records, matched_count = get_page(page)
+        @array += records
+      end
+    end
+
+    def get_page
+      raise InternalError.new("get_page should be implemented in all subclasses of DocumentBase")
+    end
+
     def each
-      @array.each
+      get_pages(:from => current_page + 1, :to => total_pages)
+      @array.each{|i| yield i}
     end
 
     def method_missing(method, *args, &block)

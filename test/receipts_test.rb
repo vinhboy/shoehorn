@@ -126,23 +126,23 @@ class ReceiptsTest < ShoehornTest
     end
 
     should "reinitialize if changing category" do
-      Receipts.any_instance.expects(:get_receipts).once
+      Receipts.any_instance.expects(:get_page).once
       @receipts.modified_since = Date.new(2011, 12, 10)
     end
 
     should "not reinitialize if category remains unchanged" do
-      Receipts.any_instance.expects(:get_receipts).once
+      Receipts.any_instance.expects(:get_page).once
       @receipts.modified_since = Date.new(2011, 12, 10)
       @receipts.modified_since = Date.new(2011, 12, 10)
     end
 
     should "reinitialize if changing modified_since" do
-      Receipts.any_instance.expects(:get_receipts).once
+      Receipts.any_instance.expects(:get_page).once
       @receipts.modified_since = Date.new(2011, 12, 10)
     end
 
     should "not reinitialize if modified_since remains unchanged" do
-      Receipts.any_instance.expects(:get_receipts).once
+      Receipts.any_instance.expects(:get_page).once
       @receipts.modified_since = Date.new(2011, 12, 10)
       @receipts.modified_since = Date.new(2011, 12, 10)
     end

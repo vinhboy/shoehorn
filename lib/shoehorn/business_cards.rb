@@ -4,7 +4,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       initialize_options
-      business_cards, self.matched_count = get_business_cards
+      business_cards, self.matched_count = get_page(1)
       @array = business_cards || []
     end
 
@@ -189,8 +189,8 @@ module Shoehorn
       value
     end
 
-private
-    def get_business_cards
+    def get_page(i)
+      current_page = i
       request = build_business_card_request
       response = connection.post_xml(request)
       pages_retrieved << current_page
@@ -198,6 +198,7 @@ private
       BusinessCards.parse(response)
     end
 
+private
     def build_business_card_request(options={})
       process_options(options)
 

@@ -4,7 +4,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       initialize_options
-      other_documents, self.matched_count = get_other_documents
+      other_documents, self.matched_count = get_page(1)
       @array = other_documents || []
     end
 
@@ -42,8 +42,8 @@ module Shoehorn
       other_documents.empty? ? nil : other_documents[0]
     end
 
-private
-    def get_other_documents
+    def get_page(i)
+      current_page = i
       request = build_other_document_request
       response = connection.post_xml(request)
       pages_retrieved << current_page
@@ -51,6 +51,7 @@ private
       OtherDocuments.parse(response)
     end
 
+private
     def build_other_document_request(options={})
       process_options(options)
 

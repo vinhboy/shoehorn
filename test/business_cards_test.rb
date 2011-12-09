@@ -21,7 +21,7 @@ class BusinessCardsTest < ShoehornTest
     should "retrieve a list of business cards" do
       connection = mock_response('get_business_card_call_response_1.xml')
       business_cards = connection.business_cards
-      assert_equal 4, business_cards.size
+      assert_equal 74, business_cards.size
       assert_equal "331378049", business_cards[0].id
       assert_equal "Richard", business_cards[0].first_name
       assert_equal "Davies", business_cards[0].last_name
@@ -150,12 +150,12 @@ class BusinessCardsTest < ShoehornTest
     end
 
     should "reinitialize if changing modified_since" do
-      BusinessCards.any_instance.expects(:get_business_cards).once
+      BusinessCards.any_instance.expects(:get_page).once
       @business_cards.modified_since = Date.new(2011, 12, 10)
     end
 
     should "not reinitialize if modified_since remains unchanged" do
-      BusinessCards.any_instance.expects(:get_business_cards).once
+      BusinessCards.any_instance.expects(:get_page).once
       @business_cards.modified_since = Date.new(2011, 12, 10)
       @business_cards.modified_since = Date.new(2011, 12, 10)
     end
@@ -171,5 +171,5 @@ class BusinessCardsTest < ShoehornTest
       assert_equal [1], @business_cards.pages_retrieved
     end
   end
-  
+
 end

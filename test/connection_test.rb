@@ -128,50 +128,50 @@ class ConnectionTest <ShoehornTest
     end
 
     should "initialize bills when first accessed" do
-      Shoehorn::Bills.any_instance.expects(:get_bills).once
+      Shoehorn::Bills.any_instance.expects(:get_page).once
       bills = @connection.bills
-    end   
-    
+    end
+
     should "not initialize bills on second access" do
-      Shoehorn::Bills.any_instance.expects(:get_bills).once
+      Shoehorn::Bills.any_instance.expects(:get_page).once
       bills = @connection.bills
       bills = @connection.bills
     end
-    
+
     should "initialize bills on refresh" do
       bills = @connection.bills
-      Shoehorn::Bills.any_instance.expects(:get_bills).once
+      Shoehorn::Bills.any_instance.expects(:get_page).once
       bills.refresh
     end
 
     should "initialize business cards when first accessed" do
-      Shoehorn::BusinessCards.any_instance.expects(:get_business_cards).once
+      Shoehorn::BusinessCards.any_instance.expects(:get_page).once
       business_cards = @connection.business_cards
-    end   
-    
+    end
+
     should "not initialize business cards on second access" do
-      Shoehorn::BusinessCards.any_instance.expects(:get_business_cards).once
+      Shoehorn::BusinessCards.any_instance.expects(:get_page).once
       business_cards = @connection.business_cards
       business_cards = @connection.business_cards
     end
-    
+
     should "initialize business cards on refresh" do
       business_cards = @connection.business_cards
-      Shoehorn::BusinessCards.any_instance.expects(:get_business_cards).once
+      Shoehorn::BusinessCards.any_instance.expects(:get_page).once
       business_cards.refresh
     end
 
     should "initialize categories when first accessed" do
       Shoehorn::Categories.any_instance.expects(:get_categories).once
       categories = @connection.categories
-    end   
-    
+    end
+
     should "not initialize categories on second access" do
       Shoehorn::Categories.any_instance.expects(:get_categories).once
       categories = @connection.categories
       categories = @connection.categories
     end
-    
+
     should "initialize categories on refresh" do
       categories = @connection.categories
       Shoehorn::Categories.any_instance.expects(:get_categories).once
@@ -181,14 +181,14 @@ class ConnectionTest <ShoehornTest
     should "initialize expense reports when first accessed" do
       Shoehorn::ExpenseReports.any_instance.expects(:get_expense_reports).once
       expense_reports = @connection.expense_reports
-    end   
-    
+    end
+
     should "not initialize expense reports on second access" do
       Shoehorn::ExpenseReports.any_instance.expects(:get_expense_reports).once
       expense_reports = @connection.expense_reports
       expense_reports = @connection.expense_reports
     end
-    
+
     should "initialize expense reports on refresh" do
       expense_reports = @connection.expense_reports
       Shoehorn::ExpenseReports.any_instance.expects(:get_expense_reports).once
@@ -196,36 +196,36 @@ class ConnectionTest <ShoehornTest
     end
 
     should "initialize other documents when first accessed" do
-      Shoehorn::OtherDocuments.any_instance.expects(:get_other_documents).once
+      Shoehorn::OtherDocuments.any_instance.expects(:get_page).once
       other_documents = @connection.other_documents
-    end   
-    
+    end
+
     should "not initialize other documents on second access" do
-      Shoehorn::OtherDocuments.any_instance.expects(:get_other_documents).once
+      Shoehorn::OtherDocuments.any_instance.expects(:get_page).once
       other_documents = @connection.other_documents
       other_documents = @connection.other_documents
     end
-    
+
     should "initialize other documents on refresh" do
       other_documents = @connection.other_documents
-      Shoehorn::OtherDocuments.any_instance.expects(:get_other_documents).once
+      Shoehorn::OtherDocuments.any_instance.expects(:get_page).once
       other_documents.refresh
     end
 
     should "initialize receipts when first accessed" do
-      Shoehorn::Receipts.any_instance.expects(:get_receipts).once
+      Shoehorn::Receipts.any_instance.expects(:get_page).once
       receipts = @connection.receipts
-    end   
-    
+    end
+
     should "not initialize receipts on second access" do
-      Shoehorn::Receipts.any_instance.expects(:get_receipts).once
+      Shoehorn::Receipts.any_instance.expects(:get_page).once
       receipts = @connection.receipts
       receipts = @connection.receipts
     end
-    
+
     should "initialize receipts on refresh" do
       receipts = @connection.receipts
-      Shoehorn::Receipts.any_instance.expects(:get_receipts).once
+      Shoehorn::Receipts.any_instance.expects(:get_page).once
       receipts.refresh
     end
 

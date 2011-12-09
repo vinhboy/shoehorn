@@ -98,12 +98,12 @@ class BillsTest < ShoehornTest
     end
 
     should "reinitialize if changing modified_since" do
-      Bills.any_instance.expects(:get_bills).once
+      Bills.any_instance.expects(:get_page).once
       @bills.modified_since = Date.new(2011, 12, 10)
     end
 
     should "not reinitialize if modified_since remains unchanged" do
-      Bills.any_instance.expects(:get_bills).once
+      Bills.any_instance.expects(:get_page).once
       @bills.modified_since = Date.new(2011, 12, 10)
       @bills.modified_since = Date.new(2011, 12, 10)
     end

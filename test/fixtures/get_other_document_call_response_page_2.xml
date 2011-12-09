@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GetOtherDocumentCallResponse>
+    <OtherDocuments count="75">
+      <OtherDocument id="124581" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124582" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124583" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124584" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124585" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124586" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124587" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124588" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124589" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124590" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124591" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124592" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124593" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124594" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124595" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124596" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124597" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124598" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124599" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124600" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124601" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124602" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124603" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124604" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Investment Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/1" index="1"/>
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124538/cfe7a8ffb3fa0eb96e9d9cfcd775aa90/2" index="2"/>
+          </Images>
+      </OtherDocument>
+      <OtherDocument id="124605" envelopeCode="BYWFW2Y0" note="" createDate="06/13/2011" modifyDate="06/13/2011" name="Bank Statement 05/2011">
+          <Images count="1">
+              <Image imgurl="https://app.shoeboxed.com/api/document/jpg/other-document/124532/fbf1aa28d58bec87206db315f70978ff/1" index="1"/>
+          </Images>
+      </OtherDocument>
+    </OtherDocuments>
+</GetOtherDocumentCallResponse>

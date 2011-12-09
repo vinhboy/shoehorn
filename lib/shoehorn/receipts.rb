@@ -4,7 +4,7 @@ module Shoehorn
     def initialize(connection)
       @connection = connection
       initialize_options
-      receipts, self.matched_count = get_receipts
+      receipts, self.matched_count = get_page(1)
       @array = receipts || []
     end
 
@@ -54,8 +54,8 @@ module Shoehorn
       receipts.empty? ? nil : receipts[0]
     end
 
-private
-    def get_receipts
+    def get_page(i)
+      current_page = i
       request = build_receipt_request
       response = connection.post_xml(request)
       pages_retrieved << current_page
@@ -63,6 +63,7 @@ private
       Receipts.parse(response)
     end
 
+private
     def build_receipt_request(options={})
       process_options(options)
 
