@@ -23,11 +23,11 @@ module Shoehorn
           bill.create_date = bill_element.attributes["createDate"].to_date_from_shoeboxed_string
           bill.modify_date = bill_element.attributes["modifyDate"].to_date_from_shoeboxed_string
           bill.name = bill_element.attributes["name"]
-          bill.conversion_rate = bill_element.attributes["conversionRate"]
+          bill.conversion_rate = bill_element.attributes["conversionRate"].to_f
           bill.document_currency = bill_element.attributes["documentCurrency"]
           bill.account_currency = bill_element.attributes["accountCurrency"]
-          bill.document_total = bill_element.attributes["documentTotal"]
-          bill.converted_total = bill_element.attributes["convertedTotal"]
+          bill.document_total = bill_element.attributes["documentTotal"].to_f
+          bill.converted_total = bill_element.attributes["convertedTotal"].to_f
           bill.formatted_document_total = bill_element.attributes["formattedDocumentTotal"]
           bill.formatted_converted_total = bill_element.attributes["formattedConvertedTotal"]
 

@@ -27,13 +27,13 @@ class ReceiptsTest < ShoehornTest
       assert_equal "$3,378.30", receipts[0].total
       assert_equal "USD", receipts[0].document_currency
       assert_equal "USD", receipts[0].account_currency
-      assert_equal "1", receipts[0].conversion_rate
-      assert_equal "3378.30", receipts[0].document_total
-      assert_equal "3378.30", receipts[0].converted_total
+      assert_equal 1.0, receipts[0].conversion_rate
+      assert_equal 3378.3, receipts[0].document_total
+      assert_equal 3378.3, receipts[0].converted_total
       assert_equal "$3,378.30", receipts[0].formatted_document_total
       assert_equal "$3,378.30", receipts[0].formatted_converted_total
-      assert_equal "", receipts[0].document_tax
-      assert_equal "", receipts[0].converted_tax
+      assert_equal 0.0, receipts[0].document_tax
+      assert_equal 0.0, receipts[0].converted_tax
       assert_equal "", receipts[0].formatted_document_tax
       assert_equal "", receipts[0].formatted_converted_tax
       assert_equal Date.new(2008, 7, 12), receipts[0].modified_date
@@ -74,13 +74,13 @@ class ReceiptsTest < ShoehornTest
       assert_equal "$1,929.00", receipt.total
       assert_equal "USD", receipt.document_currency
       assert_equal "USD", receipt.account_currency
-      assert_equal "1", receipt.conversion_rate
-      assert_equal "1929.00", receipt.document_total
-      assert_equal "1929.00", receipt.converted_total
+      assert_equal 1.0, receipt.conversion_rate
+      assert_equal 1929.0, receipt.document_total
+      assert_equal 1929.0, receipt.converted_total
       assert_equal "$1,929.00", receipt.formatted_document_total
       assert_equal "$1,929.00", receipt.formatted_converted_total
-      assert_equal "", receipt.document_tax
-      assert_equal "", receipt.converted_tax
+      assert_equal 0.0, receipt.document_tax
+      assert_equal 0.0, receipt.converted_tax
       assert_equal "", receipt.formatted_document_tax
       assert_equal "", receipt.formatted_converted_tax
       assert_equal Date.new(2008, 7, 12), receipt.modified_date

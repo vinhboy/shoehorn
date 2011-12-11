@@ -29,9 +29,9 @@ class BillsTest < ShoehornTest
       assert_equal "Power Bill", bills[0].name
       assert_equal "USD", bills[0].document_currency
       assert_equal "USD", bills[0].account_currency
-      assert_equal "1", bills[0].conversion_rate
-      assert_equal "125.89", bills[0].document_total
-      assert_equal "125.89", bills[0].converted_total
+      assert_equal 1.0, bills[0].conversion_rate
+      assert_equal 125.89, bills[0].document_total
+      assert_equal 125.89, bills[0].converted_total
       assert_equal "$125.89", bills[0].formatted_document_total
       assert_equal "$125.89", bills[0].formatted_converted_total
     end
@@ -64,9 +64,9 @@ class BillsTest < ShoehornTest
       assert_equal "Power Bill", bill.name
       assert_equal "USD", bill.document_currency
       assert_equal "USD", bill.account_currency
-      assert_equal "1", bill.conversion_rate
-      assert_equal "125.89", bill.document_total
-      assert_equal "125.89", bill.converted_total
+      assert_equal 1.0, bill.conversion_rate
+      assert_equal 125.89, bill.document_total
+      assert_equal 125.89, bill.converted_total
       assert_equal "$125.89", bill.formatted_document_total
       assert_equal "$125.89", bill.formatted_converted_total
 
