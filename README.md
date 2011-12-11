@@ -2,8 +2,10 @@
 
 An implementation of the Shoeboxed (https://app.shoeboxed.com/) API. Consult the Shoeboxed API documentation (http://developer.shoeboxed.com/overview) for details of API operations.
 
-**WARNING WARNING WARNING: This gem is not ready for production use yet. Although it is mostly feature-complete, it has mainly been tested with mock data. I plan to release a useable version by 12/15/11.**
+## Installation
 
+  gem install shoehorn
+  
 ## What's Implemented
 
 ### Connecting to Shoeboxed
