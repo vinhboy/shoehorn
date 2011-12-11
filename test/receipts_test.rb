@@ -36,9 +36,9 @@ class ReceiptsTest < ShoehornTest
       assert_equal "", receipts[0].converted_tax
       assert_equal "", receipts[0].formatted_document_tax
       assert_equal "", receipts[0].formatted_converted_tax
-      assert_equal "7/12/2008", receipts[0].modified_date
-      assert_equal "7/10/2008", receipts[0].created_date
-      assert_equal "5/12/2008", receipts[0].selldate
+      assert_equal Date.new(2008, 7, 12), receipts[0].modified_date
+      assert_equal Date.new(2008, 7, 10), receipts[0].created_date
+      assert_equal Date.new(2008, 5, 12), receipts[0].selldate
     end
 
     should "retrieve the total number of available receipts" do
@@ -83,9 +83,9 @@ class ReceiptsTest < ShoehornTest
       assert_equal "", receipt.converted_tax
       assert_equal "", receipt.formatted_document_tax
       assert_equal "", receipt.formatted_converted_tax
-      assert_equal "7/12/2008", receipt.modified_date
-      assert_equal "7/10/2008", receipt.created_date
-      assert_equal "5/12/2008", receipt.selldate
+      assert_equal Date.new(2008, 7, 12), receipt.modified_date
+      assert_equal Date.new(2008, 7, 10), receipt.created_date
+      assert_equal Date.new(2008, 5, 12), receipt.selldate
 
       assert_equal 3, receipt.categories.size
       assert_equal "23423342", receipt.categories[0].id

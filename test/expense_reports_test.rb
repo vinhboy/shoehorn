@@ -24,7 +24,7 @@ class ExpenseReportsTest < ShoehornTest
       assert_equal 2, expense_reports.size
       assert_equal "1902938", expense_reports[0].id
       assert_equal "Vacation Expenses", expense_reports[0].name
-      assert_equal "07/11/2011", expense_reports[0].date
+      assert_equal Date.new(2011, 7, 11), expense_reports[0].date
       assert_equal 3, expense_reports[0].num_pages
       assert_equal "https://app.shoeboxed.com/api/export/pdf-expenses/1902938/851d1b6e82b1d28b1cef6f9f6eebbb19", expense_reports[0].url
     end

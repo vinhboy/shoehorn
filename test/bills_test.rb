@@ -24,8 +24,8 @@ class BillsTest < ShoehornTest
       assert_equal 2, bills.size
       assert_equal "123884", bills[0].id
       assert_equal "", bills[0].envelope_code
-      assert_equal "02/04/2011", bills[0].create_date
-      assert_equal "02/04/2011", bills[0].modify_date
+      assert_equal Date.new(2011, 2, 4), bills[0].create_date
+      assert_equal Date.new(2011, 2, 4), bills[0].modify_date
       assert_equal "Power Bill", bills[0].name
       assert_equal "USD", bills[0].document_currency
       assert_equal "USD", bills[0].account_currency
@@ -59,8 +59,8 @@ class BillsTest < ShoehornTest
       bill = connection.bills.find_by_id("123884")
       assert_equal "123884", bill.id
       assert_equal "", bill.envelope_code
-      assert_equal "02/04/2011", bill.create_date
-      assert_equal "02/04/2011", bill.modify_date
+      assert_equal Date.new(2011, 2, 4), bill.create_date
+      assert_equal Date.new(2011, 2, 4), bill.modify_date
       assert_equal "Power Bill", bill.name
       assert_equal "USD", bill.document_currency
       assert_equal "USD", bill.account_currency

@@ -24,7 +24,7 @@ module Shoehorn
           expense_report = ExpenseReport.new
           expense_report.id = report_element.elements["Id"].text
           expense_report.name = report_element.elements["Name"].text
-          expense_report.date = report_element.elements["Date"].text
+          expense_report.date = report_element.elements["Date"].text.to_date_from_shoeboxed_string
           expense_report.num_pages = report_element.elements["NumPages"].text.to_i
           expense_report.url = report_element.elements["URL"].text
         rescue => e

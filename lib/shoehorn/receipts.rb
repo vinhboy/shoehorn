@@ -29,9 +29,9 @@ module Shoehorn
           receipt.converted_tax = receipt_element.attributes["convertedTax"]
           receipt.formatted_document_tax = receipt_element.attributes["formattedDocumentTax"]
           receipt.formatted_converted_tax = receipt_element.attributes["formattedConvertedTax"]
-          receipt.modified_date = receipt_element.attributes["modifiedDate"]
-          receipt.created_date = receipt_element.attributes["createdDate"]
-          receipt.selldate = receipt_element.attributes["selldate"]
+          receipt.modified_date = receipt_element.attributes["modifiedDate"].to_date_from_shoeboxed_string
+          receipt.created_date = receipt_element.attributes["createdDate"].to_date_from_shoeboxed_string
+          receipt.selldate = receipt_element.attributes["selldate"].to_date_from_shoeboxed_string
 
           category_element = receipt_element.elements["Categories"]
           receipt.categories = category_element ? Categories.parse(category_element.to_s) : []

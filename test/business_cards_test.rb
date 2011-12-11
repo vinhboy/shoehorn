@@ -25,7 +25,7 @@ class BusinessCardsTest < ShoehornTest
       assert_equal "331378049", business_cards[0].id
       assert_equal "Richard", business_cards[0].first_name
       assert_equal "Davies", business_cards[0].last_name
-      assert_equal "2/5/2009", business_cards[0].create_date
+      assert_equal Date.new(2009, 2, 5), business_cards[0].create_date
       assert_equal "", business_cards[0].address
       assert_equal "", business_cards[0].address2
       assert_equal "RTP", business_cards[0].city
@@ -59,7 +59,7 @@ class BusinessCardsTest < ShoehornTest
       assert_equal "331378049", business_card.id
       assert_equal "Richard", business_card.first_name
       assert_equal "Davies", business_card.last_name
-      assert_equal "2/5/2009", business_card.create_date
+      assert_equal Date.new(2009, 2, 5), business_card.create_date
       assert_equal "", business_card.address
       assert_equal "", business_card.address2
       assert_equal "RTP", business_card.city

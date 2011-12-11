@@ -7,7 +7,7 @@ module Shoehorn
       bills, self.matched_count = get_page(1)
       @array = bills || []
     end
-    
+
     def self.parse(xml)
       bills = Array.new
       document = REXML::Document.new(xml)
@@ -20,8 +20,8 @@ module Shoehorn
           bill.id = bill_element.attributes["id"]
           bill.envelope_code = bill_element.attributes["envelopeCode"]
           bill.note = bill_element.attributes["note"]
-          bill.create_date = bill_element.attributes["createDate"]
-          bill.modify_date = bill_element.attributes["modifyDate"]
+          bill.create_date = bill_element.attributes["createDate"].to_date_from_shoeboxed_string
+          bill.modify_date = bill_element.attributes["modifyDate"].to_date_from_shoeboxed_string
           bill.name = bill_element.attributes["name"]
           bill.conversion_rate = bill_element.attributes["conversionRate"]
           bill.document_currency = bill_element.attributes["documentCurrency"]
@@ -48,16 +48,16 @@ module Shoehorn
       bills, matched_count = Bills.parse(response)
       bills.empty? ? nil : bills[0]
     end
-       
-    def get_page(i) 
+
+    def get_page(i)
       current_page = i
       request = build_bill_request
-      response = connection.post_xml(request)     
+      response = connection.post_xml(request)
       pages_retrieved << current_page
 
       Bills.parse(response)
     end
-    
+
 private
     def build_bill_request(options={})
       process_options(options)

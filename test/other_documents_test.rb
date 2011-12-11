@@ -24,8 +24,8 @@ class OtherDocumentsTest < ShoehornTest
       assert_equal 2, other_documents.size
       assert_equal "124532", other_documents[0].id
       assert_equal "BYWFW2Y0", other_documents[0].envelope_code
-      assert_equal "06/13/2011", other_documents[0].create_date
-      assert_equal "06/13/2011", other_documents[0].modify_date
+      assert_equal Date.new(2011, 6, 13), other_documents[0].create_date
+      assert_equal Date.new(2011, 6, 13), other_documents[0].modify_date
       assert_equal "Bank Statement 05/2011", other_documents[0].name
     end
 
@@ -52,8 +52,8 @@ class OtherDocumentsTest < ShoehornTest
       other_document = connection.other_documents.find_by_id("123884")
       assert_equal "124532", other_document.id
       assert_equal "BYWFW2Y0", other_document.envelope_code
-      assert_equal "06/13/2011", other_document.create_date
-      assert_equal "06/13/2011", other_document.modify_date
+      assert_equal Date.new(2011, 6, 13), other_document.create_date
+      assert_equal Date.new(2011, 6, 13), other_document.modify_date
       assert_equal "Bank Statement 05/2011", other_document.name
 
       assert_equal 4, other_document.images.size

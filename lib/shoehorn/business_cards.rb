@@ -18,7 +18,7 @@ module Shoehorn
           business_card.id = business_card_element.attributes["id"]
           business_card.first_name = business_card_element.attributes["firstName"]
           business_card.last_name = business_card_element.attributes["lastName"]
-          business_card.create_date = business_card_element.attributes["createDate"]
+          business_card.create_date = business_card_element.attributes["createDate"].to_date_from_shoeboxed_string
           business_card.address = business_card_element.attributes["address"]
           business_card.address2 = business_card_element.attributes["address2"]
           business_card.city = business_card_element.attributes["city"]

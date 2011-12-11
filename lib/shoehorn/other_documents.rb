@@ -20,8 +20,8 @@ module Shoehorn
           other_document.id = other_document_element.attributes["id"]
           other_document.envelope_code = other_document_element.attributes["envelopeCode"]
           other_document.note = other_document_element.attributes["note"]
-          other_document.create_date = other_document_element.attributes["createDate"]
-          other_document.modify_date = other_document_element.attributes["modifyDate"]
+          other_document.create_date = other_document_element.attributes["createDate"].to_date_from_shoeboxed_string
+          other_document.modify_date = other_document_element.attributes["modifyDate"].to_date_from_shoeboxed_string
           other_document.name = other_document_element.attributes["name"]
 
           image_element = other_document_element.elements["Images"]
