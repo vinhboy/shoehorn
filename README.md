@@ -70,7 +70,6 @@ Some other parts of the Shoeboxed API are also covered by this gem:
 
 * Upload support
 * Cover sheet support
-* Ruby native data types for things like dates
 * Live sandbox testing (This is not yet implemented by Shoeboxed)
 
 ## Testing Shoehorn
