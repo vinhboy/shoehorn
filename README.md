@@ -5,7 +5,7 @@ An implementation of the Shoeboxed (https://app.shoeboxed.com/) API. Consult the
 ## Installation
 
   gem install shoehorn
-  
+
 ## What's Implemented
 
 ### Connecting to Shoeboxed
@@ -20,7 +20,7 @@ The first two are supplied by Shoeboxed - you can find them in your Account & Se
 
 Start the process by initializing shoehorn with your application information:
 
-	connection = Shoehorn::Connection.new('MyAppName', 'my_app_token', 'http://myapp.example.com', {:param => 'value'})
+  connection = Shoehorn::Connection.new('MyAppName', 'my_app_token', 'http://myapp.example.com', {:param => 'value'})
 
 The third and fourth parameters define the callback URL that your application must listen to for the user token. You can supply a base URL and a set of querystring parameters that will be returned.
 
@@ -31,7 +31,7 @@ Next, retrieve connection.authentication_url from shoehorn. Send your user to th
 
 Finally, save the user token on your shoehorn connection. This sets the user context for all subsequent shoehorn calls.
 
-	connection.user_token = tkn
+  connection.user_token = tkn
 
 See http://developer.shoeboxed.com/authentication for further details on the Shoeboxed authentication process.
 
@@ -39,12 +39,12 @@ See http://developer.shoeboxed.com/authentication for further details on the Sho
 
 After successfully authenticating, you can retrieve the user's Shoeboxed data from collections on the connection:
 
-	connection.Bills
-	connection.BusinessCards
-	connection.Categories
-	connection.ExpenseReports
-	connection.OtherDocuments
-	connection.Receipts
+  connection.Bills
+  connection.BusinessCards
+  connection.Categories
+  connection.ExpenseReports
+  connection.OtherDocuments
+  connection.Receipts
 
 These collections are lazily initialized when they are first accessed. Each also supports a refresh method to update the data from Shoeboxed. Within the collections you'll find individual objects - Bill, BusinessCard, Category, ExpenseReport, OtherDocument, Receipt - containing the details of the data.
 
@@ -52,7 +52,7 @@ Although Shoeboxed returns collections in batches, this should be transparent to
 
 If you know the ID of a particular document on Shoeboxed, you can retrieve it directly with the find_by_id method on the appropriate collection:
 
-	bill = connection.bills.find_by_id("123884")
+  bill = connection.bills.find_by_id("123884")
 
 **NOTE: The find\_by\_id method is not supported on expense reports.**
 
@@ -61,12 +61,12 @@ If you know the ID of a particular document on Shoeboxed, you can retrieve it di
 Some other parts of the Shoeboxed API are also covered by this gem:
 
 * BusinessCards
-	* estimate\_pdf\_business\_card\_report - returns the estimated number of cards and pages for exporting business cards as a PDF.
-	* generate\_pdf\_business\_card\_report - Returns a URL for one-time download of business cards as a PDF.
-	* get\_business\_card\_exports - Returns a hash of export options and whether they are enabled.  
-	* notify\_preferences - Get or set the user's auto-share mode.
-	* get\_viral\_business\_card\_email\_text
-	* auto\_share\_contact\_details - Get or set the user's contact information that is sent out with business cards
+  * estimate\_pdf\_business\_card\_report - returns the estimated number of cards and pages for exporting business cards as a PDF.
+  * generate\_pdf\_business\_card\_report - Returns a URL for one-time download of business cards as a PDF.
+  * get\_business\_card\_exports - Returns a hash of export options and whether they are enabled.
+  * notify\_preferences - Get or set the user's auto-share mode.
+  * get\_viral\_business\_card\_email\_text
+  * auto\_share\_contact\_details - Get or set the user's contact information that is sent out with business cards
 
 ## What's Missing
 
@@ -76,7 +76,7 @@ Some other parts of the Shoeboxed API are also covered by this gem:
 
 ## Testing Shoehorn
 
-Some of the tests depend on a live connection to Shoeboxed. To set this up, you must make a copy of test/shoehorn\_credentials.sample.yml to test/shoehorn\_credentials.yml and fill in the required information. 
+Some of the tests depend on a live connection to Shoeboxed. To set this up, you must make a copy of test/shoehorn\_credentials.sample.yml to test/shoehorn\_credentials.yml and fill in the required information.
 
 ## Footnotes
 
