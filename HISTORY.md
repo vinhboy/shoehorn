@@ -1,5 +1,10 @@
 # Version History
 
+0.5.3
+March 22, 2012
+-----
+Added BusinessCard#envelope_code attribute.
+
 0.5.2
 December 11, 2011
 -----

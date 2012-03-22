@@ -35,6 +35,7 @@ module Shoehorn
           business_card.front_img_url = business_card_element.attributes["frontImgUrl"]
           business_card.back_img_url = business_card_element.attributes["backImgUrl"]
           business_card.note = business_card_element.attributes["note"]
+          business_card.envelope_code = business_card_element.attributes["envelopeCode"]
         rescue => e
           raise Shoehorn::ParseError.new(e, receipt_element.to_s, "Error parsing receipt.")
         end
@@ -115,7 +116,7 @@ module Shoehorn
     end
 
     # Turn auto-share mode on or off
-    def notify_preference=(value)                          
+    def notify_preference=(value)
       if value
         translated_value = "1"
       else
@@ -133,7 +134,7 @@ module Shoehorn
       # TODO: Retrieve the new value to make sure it worked?
       value
     end
-    
+
     def get_viral_business_card_email_text
       xml = Builder::XmlMarkup.new
       xml.instruct!
@@ -145,7 +146,7 @@ module Shoehorn
       document = REXML::Document.new(response)
       document.elements["GetViralBusinessCardEmailTextCallResponse"].elements["ViralEmailText"].text
     end
-    
+
     # Get user's contact information that is sent out with business cards
     def auto_share_contact_details
       xml = Builder::XmlMarkup.new
@@ -161,13 +162,13 @@ module Shoehorn
       details[:first_name] = details_element.elements["FirstName"].text
       details[:last_name] = details_element.elements["LastName"].text
       details[:email] = details_element.elements["Email"].text
-      details[:additional_contact_info] = details_element.elements["AdditionalContactInfo"].text    
+      details[:additional_contact_info] = details_element.elements["AdditionalContactInfo"].text
       details
     end
 
-    # Set user's contact information that is sent out with business cards 
+    # Set user's contact information that is sent out with business cards
     # value should be a hash {:first_name => "John", :last_name => "Doe", :email => "John.Doe@example.com", :additional_contact_info => "Only email on weekdays"}
-    def auto_share_contact_details=(value)                          
+    def auto_share_contact_details=(value)
       first_name = value[:first_name] || ''
       last_name = value[:last_name] || ''
       email = value[:email] || ''
@@ -184,7 +185,7 @@ module Shoehorn
         end
       end
       response = connection.post_xml(xml)
-      # TODO: Retrieve the new value to make sure it worked?  
+      # TODO: Retrieve the new value to make sure it worked?
       # TODO: This can throw some specific efforts; see http://developer.shoeboxed.com/business-cards
       value
     end

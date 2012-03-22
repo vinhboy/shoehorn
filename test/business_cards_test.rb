@@ -42,6 +42,7 @@ class BusinessCardsTest < ShoehornTest
       assert_equal "https://www.shoeboxed.com/business-card.jpeg?bcid=331378049&code=eb43ab329ef9902ps27bf2c1e4a93c51", business_cards[0].front_img_url
       assert_equal "https://www.shoeboxed.com/business-card.jpeg?bcid=331378049&back=y&code=eb43ab309ol99fc9727bf2c1e4a93c51", business_cards[0].back_img_url
       assert_equal "met at downtown Durham networking event", business_cards[0].note
+      assert_nil business_cards[0].envelope_code
     end
 
     should "retrieve the total number of available business cards" do
@@ -76,6 +77,7 @@ class BusinessCardsTest < ShoehornTest
       assert_equal "https://www.shoeboxed.com/business-card.jpeg?bcid=331378049&code=eb43ab329ef9902ps27bf2c1e4a93c51", business_card.front_img_url
       assert_equal "https://www.shoeboxed.com/business-card.jpeg?bcid=331378049&back=y&code=eb43ab309ol99fc9727bf2c1e4a93c51", business_card.back_img_url
       assert_equal "met at downtown Durham networking event", business_card.note
+      assert_equal "A1", business_card.envelope_code
     end
 
     # TODO: Check what Shoeboxed returns if ID doesn't match
