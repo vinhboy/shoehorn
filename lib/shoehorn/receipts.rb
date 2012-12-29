@@ -55,10 +55,10 @@ module Shoehorn
     end
 
     def get_page(i)
-      current_page = i
+      @current_page = i
       request = build_receipt_request
       response = connection.post_xml(request)
-      pages_retrieved << current_page
+      pages_retrieved << @current_page
 
       Receipts.parse(response)
     end
@@ -74,7 +74,7 @@ private
         xml.GetReceiptCall do |xml|
           xml.ReceiptFilter do |xml|
             xml.Results(per_page)
-            xml.PageNo(current_page)
+            xml.PageNo(@current_page)
             xml.Category(category_id) if category_id
             xml.ModifiedSince(modified_since) if modified_since
           end
