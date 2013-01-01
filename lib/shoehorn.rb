@@ -5,7 +5,7 @@ class String
   def to_date_from_shoeboxed_string
     return nil if self.nil?
     begin
-      Date.parse(self, false)
+      Date.strptime(self, "%m/%d/%Y")
     rescue Exception => ex
       nil
     end

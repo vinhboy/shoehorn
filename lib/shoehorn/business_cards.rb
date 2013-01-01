@@ -191,10 +191,10 @@ module Shoehorn
     end
 
     def get_page(i)
-      current_page = i
+      @current_page = i
       request = build_business_card_request
       response = connection.post_xml(request)
-      pages_retrieved << current_page
+      pages_retrieved << @current_page
 
       BusinessCards.parse(response)
     end
@@ -210,7 +210,7 @@ private
         xml.GetBusinessCardCall do |xml|
           xml.BusinessCardFilter do |xml|
             xml.Results(per_page)
-            xml.PageNo(current_page)
+            xml.PageNo(@current_page)
             xml.ModifiedSince(modified_since) if modified_since
           end
         end

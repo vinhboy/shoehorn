@@ -33,7 +33,7 @@ module Shoehorn
     def [](i)
       needed_page = (i.to_i / per_page.to_i) + 1
       if !pages_retrieved.include? needed_page
-        get_pages(:from => current_page + 1, :to => needed_page)
+        get_pages(:from => @current_page + 1, :to => needed_page)
       end
       @array[i]
     end
@@ -56,7 +56,7 @@ module Shoehorn
     end
 
     def each
-      get_pages(:from => current_page + 1, :to => total_pages)
+      get_pages(:from => @current_page + 1, :to => total_pages)
       @array.each{|i| yield i}
     end
 
@@ -152,7 +152,7 @@ module Shoehorn
 
     def process_options(options={})
       results = options[:per_page] || per_page
-      page_no = options[:page] || current_page
+      page_no = options[:page] || @current_page
       modified_since = options[:modified_since] || modified_since
       category_id = options[:category_id] || category_id
     end

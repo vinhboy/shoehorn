@@ -50,10 +50,10 @@ module Shoehorn
     end
 
     def get_page(i)
-      current_page = i
+      @current_page = i
       request = build_bill_request
       response = connection.post_xml(request)
-      pages_retrieved << current_page
+      pages_retrieved << @current_page
 
       Bills.parse(response)
     end
@@ -69,7 +69,7 @@ private
         xml.GetBillCall do |xml|
           xml.BillFilter do |xml|
             xml.Results(per_page)
-            xml.PageNo(current_page)
+            xml.PageNo(@current_page)
             xml.ModifiedSince(modified_since) if modified_since
           end
         end
