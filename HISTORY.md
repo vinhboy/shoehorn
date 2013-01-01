@@ -1,5 +1,11 @@
 # Version History
 
+0.5.4
+January 1, 2013
+-----
+Fixed month/day parsing for Ruby 1.9 [Austin Che]
+Fixed pagination [Austin Che]
+
 0.5.3
 March 22, 2012
 -----

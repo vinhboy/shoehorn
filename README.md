@@ -84,4 +84,6 @@ Author: Mike Gunderloy, MikeG1@larkfarm.com
 
 Thanks to https://github.com/bcurren/rshoeboxed for previous hard work on the Shoeboxed API. Some portions of this code originated with rshoeboxed.
 
+Thanks to Austin Che https://github.com/austinche for bug fixes.
+
 Public repo: https://github.com/ffmike/shoehorn
