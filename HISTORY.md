@@ -1,5 +1,10 @@
 # Version History
 
+0.5.5
+February 16, 2013
+-----
+Added Receipt#notes attribute [Matt Gaidica]
+
 0.5.4
 January 1, 2013
 -----
