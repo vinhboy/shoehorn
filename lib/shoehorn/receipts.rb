@@ -18,6 +18,7 @@ module Shoehorn
           receipt.id = receipt_element.attributes["id"]
           receipt.store = receipt_element.attributes["store"]
           receipt.total = receipt_element.attributes["total"]
+          receipt.note = receipt_element.attributes["note"]
           receipt.document_currency = receipt_element.attributes["documentCurrency"]
           receipt.account_currency = receipt_element.attributes["accountCurrency"]
           receipt.conversion_rate = receipt_element.attributes["conversionRate"].to_f
