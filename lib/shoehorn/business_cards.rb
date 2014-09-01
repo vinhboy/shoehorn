@@ -37,7 +37,7 @@ module Shoehorn
           business_card.note = business_card_element.attributes["note"]
           business_card.envelope_code = business_card_element.attributes["envelopeCode"]
         rescue => e
-          raise Shoehorn::ParseError.new(e, receipt_element.to_s, "Error parsing receipt.")
+          raise Shoehorn::ParseError.new(e, business_card_element.to_s, "Error parsing receipt.")
         end
         business_cards << business_card
       end
